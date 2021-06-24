@@ -1,0 +1,6 @@
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\bin\Debug\Dominio.dll
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\bin\Debug\Dominio.pdb
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.dll
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.pdb
