@@ -4,7 +4,7 @@ GO
 USE LAVE
 GO
 
-CREATE TABLE Medicos(
+CREATE TABLE MEDICOS(
 ID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 NOMBRE VARCHAR(40) NOT NULL,
 APELLIDO VARCHAR(40) NOT NULL,
@@ -12,7 +12,14 @@ CONTACTO VARCHAR(50) NOT NULL
 )
 GO
 
-INSERT INTO Medicos (NOMBRE,APELLIDO,CONTACTO) VALUES ('Elmer','Vasquez','elmerr.vasquez@gmail.com'), ('Agustin','Larroca', 'agustin.larroca@gmail.com')
+CREATE TABLE ESPECIALIDADES(
+ID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+DESCRIPCION VARCHAR(40) NOT NULL
+)
 GO
 
-SELECT ID, NOMBRE, APELLIDO, CONTACTO FROM MEDICOS
+INSERT INTO MEDICOS (NOMBRE,APELLIDO,CONTACTO) VALUES ('Elmer','Vasquez','elmerr.vasquez@gmail.com'), ('Agustin','Larroca', 'agustin.larroca@gmail.com'), ('Roberto', 'Gonzales','robertogonzales@gmail.com')
+GO
+
+INSERT INTO ESPECIALIDADES (DESCRIPCION) VALUES ('Odontologia'), ('Cardiologia'), ('UROLOGIA')
+GO

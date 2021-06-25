@@ -32,7 +32,7 @@
                    </td>
                    <td class="centrar-texto"><%=medico.Mail %></td>
                    <td class="centrar-texto">
-                       <a href="#" style="align-items: center;">
+                       <a href="DetalleMedico?id=<%=medico.Id %>" style="align-items: center;">
                            <i class="fas fa-search-plus" style="color: black;"></i>
                        </a>
                    </td>

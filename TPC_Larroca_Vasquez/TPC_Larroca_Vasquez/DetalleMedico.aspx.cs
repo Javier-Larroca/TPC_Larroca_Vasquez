@@ -4,27 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 using Dominio;
+using Negocio;
+
 namespace TPC_Larroca_Vasquez
 {
-    public partial class ListaDeMedicos : System.Web.UI.Page
+    public partial class DetalleMedico : System.Web.UI.Page
     {
-        private MedicoNegocio negocio;
-        public List<Medico> listaDeMedicos;
+        public Medico medicoSeleccionado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                negocio = new MedicoNegocio();
-                listaDeMedicos = negocio.listarMedicos();
-                Session.Add("ListaDeMedicos", listaDeMedicos);
+                int Id = int.Parse(Request.QueryString["Id"]);
+                List<Medico> listado = (List<Medico>)Session["ListaDeMedicos"];
+                medicoSeleccionado = listado.Find(x => x.Id == Id);
             }
             catch
             {
                 Response.Redirect("Inicio");
             }
-            
         }
     }
 }

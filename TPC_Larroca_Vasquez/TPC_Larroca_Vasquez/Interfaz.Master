@@ -53,7 +53,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="ListaDeMedicos"> Alta de medico
+                                <a class="dropdown-item" href="AltaDeMedico"> Alta de medico
                                 </a>
                             </li>
                             <li>
@@ -87,6 +87,48 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Modificar turno
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#paciente-collapse" aria-expanded="false" onclick="return false">
+                        Pacientes
+                    </button>
+                    <div class="collapse" id="paciente-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li>
+                                <a class="dropdown-item" href="#">Listado de pacientes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Alta de paciente
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Baja de paciente
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#usuario-collapse" aria-expanded="false" onclick="return false">
+                        Usuarios
+                    </button>
+                    <div class="collapse" id="usuario-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li>
+                                <a class="dropdown-item" href="#">Listado de usuarios
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Alta de usuario
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Baja de usuario
                                 </a>
                             </li>
                         </ul>
