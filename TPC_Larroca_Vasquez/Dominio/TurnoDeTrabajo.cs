@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class TurnoDeTrabajo
     {
-        public int HorarioEntrada { get; set; }
-        public int HorarioSalida { get; set; }
+        public String HorarioEntrada { get; set; }
+        public String HorarioSalida { get; set; }
     }
 }

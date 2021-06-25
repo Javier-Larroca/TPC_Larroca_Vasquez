@@ -30,7 +30,7 @@ namespace Negocio
             comando.Parameters.AddWithValue(nombre, valor);
         }
 
-        public void ejecutarLectura()
+        public void ejecutarQueryLectura()
         {
             comando.Connection = conexion;
             conexion.Open();
@@ -49,7 +49,7 @@ namespace Negocio
             get { return lector; }
         }
 
-        internal void ejecutarQuery()
+        internal void ejecutarQueryAccion()
         {
             comando.Connection = conexion;
             conexion.Open();

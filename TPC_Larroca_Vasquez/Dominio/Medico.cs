@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Medico
+    public class Medico : Persona
     {
-        public int Id { get; set; }
-        public String Nombre { get; set; }
-        public String Apellido { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public TurnoDeTrabajo TurnoDeTrabajo { get; set; }
         public int CantidadDeTurnosAsignados { get; set; }
@@ -19,10 +16,12 @@ namespace Dominio
         {
             Id = 0;
         }
-        public Medico(string nombre, string apellido)
+        public Medico(string nombre, string apellido, string mail, int dni)
         {
             Nombre = nombre;
             Apellido = apellido;
+            Mail = mail;
+            Dni = dni;
             CantidadDeTurnosAsignados = 0;
         }
     }

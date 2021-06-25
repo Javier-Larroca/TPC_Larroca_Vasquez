@@ -7,7 +7,7 @@ using Dominio;
 
 namespace Negocio
 {
-    class MedicoNegocio
+    public class MedicoNegocio
     {
         private AccesoDatos conexion = new AccesoDatos();
         public List<Medico> listarMedicos()
@@ -15,8 +15,8 @@ namespace Negocio
             List<Medico> listaDeMedicos = new List<Medico>();
             try
             {
-                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO FROM MEDICOS");
-                conexion.ejecutarQuery();
+                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO, CONTACTO FROM MEDICOS");
+                conexion.ejecutarQueryLectura();
 
                 while (conexion.Lector.Read())
                 {
@@ -26,6 +26,7 @@ namespace Negocio
                     backup.Id = (int)conexion.Lector["ID"];
                     backup.Nombre = (String)conexion.Lector["NOMBRE"];
                     backup.Apellido = (String)conexion.Lector["APELLIDO"];
+                    backup.Mail = (String)conexion.Lector["CONTACTO"];
 
                     listaDeMedicos.Add(backup);
                 }

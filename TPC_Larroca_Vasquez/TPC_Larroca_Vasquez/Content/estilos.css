@@ -91,3 +91,52 @@ main {
 /*Fin estilos sidebar*/
 
 /*Estilos para componentes*/
+.cuerpoPrincipal{
+    width: 85%;
+    margin-top: 1%;
+    min-height: 90vh;
+}
+
+footer{
+    background-color: #161a1d;
+    width: 100%;
+    height: 50px;
+    color: white;
+}
+
+footer p{
+    text-align: center;
+    padding: 13px;
+}
+
+.navColor {
+    background-color: #9670af;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.navColor i{
+    font-size: 30px;
+}
+
+.navColor p{
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+}
+
+.container-sin-espacios{
+    justify-content: normal !important;
+}
+
+.div-tabla{
+    float: left;
+    margin: 30px;
+}
+
+.centrar-texto{
+    text-align: center;
+}

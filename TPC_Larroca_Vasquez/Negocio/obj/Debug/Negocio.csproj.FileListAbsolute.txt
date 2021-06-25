@@ -7,3 +7,12 @@ C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasqu
 C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.dll
 C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.pdb
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\bin\Debug\Negocio.dll
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\bin\Debug\Negocio.pdb
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\bin\Debug\Dominio.dll
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\bin\Debug\Dominio.pdb
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.dll
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Negocio\obj\Debug\Negocio.pdb

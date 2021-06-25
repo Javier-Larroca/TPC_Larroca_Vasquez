@@ -24,58 +24,100 @@
     <form id="form1" runat="server">
 
         <div class="flex-shrink-0 p-3 bg-white" style="width: 14%; float: left;">
-            <a href="Default.aspx" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                <img src="img/LAVE.png" class="bi me-2" width="30" height="24"></img>
+            <a href="Inicio.aspx" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                <img src="img/LAVE.png" class="bi me-2" width="30" height="24" />
                 <span class="fs-5 fw-semibold">LAVE</span>
             </a>
             <ul class="list-unstyled ps-0">
                 <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" onclick="return false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" onclick="return false">
                         Inicio
                     </button>
                     <div class="collapse" id="home-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li>Sin asignar</li>
-                            <li>Sin asignar</li>
-                            <li>Sin asignar</li>
+                            <li>
+                                <a class="dropdown-item" href="Inicio">Novedades
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#medicos-collapse" aria-expanded="true" onclick="return false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#medicos-collapse" aria-expanded="false" onclick="return false">
                         Medicos
                     </button>
                     <div class="collapse" id="medicos-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li>
-                              <a class="dropdown-item" href="#">
-                                  Lista de Medicos
-                              </a> 
+                                <a class="dropdown-item" href="ListaDeMedicos">Lista de medicos
+                                </a>
                             </li>
-                            <li>Sin asignar</li>
-                            <li>Sin asignar</li>
+                            <li>
+                                <a class="dropdown-item" href="ListaDeMedicos"> Alta de medico
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="ListaDeMedicos"> Baja de medico
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="ListaDeMedicos"> Modificar datos
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
                 <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#turnos-collapse" aria-expanded="true" onclick="return false">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#turnos-collapse" aria-expanded="false" onclick="return false">
                         Turnos
                     </button>
                     <div class="collapse" id="turnos-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li>Turnos</li>
-                            <li>Sin asignar</li>
-                            <li>Sin asignar</li>
+                            <li>
+                                <a class="dropdown-item" href="#">Turnos asignados
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Reservar turno
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Cancelar turno
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Modificar turno
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
-
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cuenta-collapse" aria-expanded="false" onclick="return false">
+                        Cuenta
+                    </button>
+                    <div class="collapse" id="cuenta-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li>
+                                <a class="dropdown-item" href="#">Perfil
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div style="float: right; width: 85%">
+        <section class="cuerpoPrincipal">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
+        </section>
+        <footer>
+            <p>LAVE - Gestion de Turnos - Argentina</p>
+        </footer>
     </form>
 </body>
 </html>
