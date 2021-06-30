@@ -15,7 +15,7 @@ namespace Negocio
             List<Medico> listaDeMedicos = new List<Medico>();
             try
             {
-                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO, CONTACTO FROM MEDICOS");
+                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM MEDICOS");
                 conexion.ejecutarQueryLectura();
 
                 while (conexion.Lector.Read())
@@ -27,6 +27,9 @@ namespace Negocio
                     backup.Nombre = (String)conexion.Lector["NOMBRE"];
                     backup.Apellido = (String)conexion.Lector["APELLIDO"];
                     backup.Mail = (String)conexion.Lector["CONTACTO"];
+                    backup.Matricula = (int)conexion.Lector["MATRICULA"];
+                    backup.Alta = (DateTime)conexion.Lector["FECHA_ALTA"];
+                    //backup.Especialidades = especialidadPorMedico(backup.Id);
 
                     listaDeMedicos.Add(backup);
                 }
@@ -34,6 +37,32 @@ namespace Negocio
                 return listaDeMedicos;
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public List<Especialidad> especialidadPorMedico(int id)
+        {
+            List<Especialidad> EspecialidadesMedico = new List<Especialidad>();
+            try
+            {
+                conexion.setearQuery("EXECUTE pEspecialidadesPorMedico " + id);
+                conexion.ejecutarQueryLectura();
+
+                while (conexion.Lector.Read())
+                {
+                    Especialidad backup = new Especialidad((String)conexion.Lector["ESPECIALIDAD"]);
+                    EspecialidadesMedico.Add(backup);
+                }
+
+                return EspecialidadesMedico;
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

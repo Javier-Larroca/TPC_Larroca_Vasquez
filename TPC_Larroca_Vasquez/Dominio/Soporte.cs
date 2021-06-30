@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class Paciente: Usuario
+    class Soporte
     {
-        public int CantidadDeTurnosReservados { get; set; }
     }
 }

@@ -19,7 +19,7 @@
                 <a href="#" class="btn btn-primary">Modificar datos</a>
             </div>
             <div class="card-footer text-muted">
-                Dado de Alta: 
+                Dado de Alta: <%=medicoSeleccionado.Alta.Date.ToString("d") %>
             </div>
         </div>
     </section>

@@ -15,7 +15,7 @@
       <th scope="col" class="centrar-texto">#</th>
       <th scope="col" class="centrar-texto">Nombre</th>
       <th scope="col" class="centrar-texto">Apellido</th>
-      <th scope="col" class="centrar-texto">Especialidad</th>
+      <th scope="col" class="centrar-texto">Matricula</th>
       <th scope="col" class="centrar-texto">Contacto</th>
       <th scope="col" class="centrar-texto">Detalles</th>
     </tr>
@@ -27,9 +27,7 @@
                    <th scope="row"><i class="fas fa-user-md "></i></th>
                    <td class="centrar-texto"><%=medico.Nombre %></td>
                    <td class="centrar-texto"><%=medico.Apellido %></td>
-                   <td class="centrar-texto">
-                       <asp:DropDownList ID="Especialidades" runat="server"></asp:DropDownList>
-                   </td>
+                   <td class="centrar-texto"><%=medico.Matricula %></td>
                    <td class="centrar-texto"><%=medico.Mail %></td>
                    <td class="centrar-texto">
                        <a href="DetalleMedico?id=<%=medico.Id %>" style="align-items: center;">

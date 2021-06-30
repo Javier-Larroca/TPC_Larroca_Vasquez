@@ -55,5 +55,6 @@ namespace Negocio
             conexion.Open();
             comando.ExecuteNonQuery();
         }
+
     }
 }

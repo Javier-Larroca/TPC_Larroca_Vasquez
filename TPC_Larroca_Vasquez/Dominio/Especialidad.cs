@@ -11,6 +11,11 @@ namespace Dominio
         public String Descripcion { get; set; }
         public int Id { get; set; }
 
+        public Especialidad()
+        {
+
+        }
+
         public Especialidad(string descripcion)
         {
             Descripcion = descripcion;

@@ -16,9 +16,12 @@ namespace TPC_Larroca_Vasquez
         {
             try
             {
-                negocio = new MedicoNegocio();
-                listaDeMedicos = negocio.listarMedicos();
-                Session.Add("ListaDeMedicos", listaDeMedicos);
+                if (!IsPostBack)
+                {
+                    negocio = new MedicoNegocio();
+                    listaDeMedicos = negocio.listarMedicos();
+                    Session.Add("ListaDeMedicos", listaDeMedicos);
+                }
             }
             catch
             {
@@ -26,5 +29,6 @@ namespace TPC_Larroca_Vasquez
             }
             
         }
+
     }
 }
