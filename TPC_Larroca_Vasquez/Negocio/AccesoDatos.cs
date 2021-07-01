@@ -19,10 +19,18 @@ namespace Negocio
             comando = new SqlCommand();
         }
 
-        public void setearQuery(string query)
+        //Seteamos commandType y text para ejecutar consultas o vistas
+        public void setearConsulta(string query)
         {
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = query;
+        }
+
+        
+        public void setearProcedimientoAlmacenado(string procedimiento)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = procedimiento;
         }
 
         public void agregarParametro(string nombre, object valor)
@@ -30,7 +38,13 @@ namespace Negocio
             comando.Parameters.AddWithValue(nombre, valor);
         }
 
-        public void ejecutarQueryLectura()
+        public void limpiarParametros()
+        {
+            comando.Parameters.Clear();
+        }
+
+        //Ejecutamos consultas a tablas o vistas
+        public void ejecutarConsultaLectura()
         {
             comando.Connection = conexion;
             conexion.Open();
@@ -49,12 +63,27 @@ namespace Negocio
             get { return lector; }
         }
 
-        internal void ejecutarQueryAccion()
+        internal void ejecutarAccion()
         {
             comando.Connection = conexion;
-            conexion.Open();
+            if (conexion.State == System.Data.ConnectionState.Closed) conexion.Open();
             comando.ExecuteNonQuery();
         }
+
+        internal void ejecutarProcedimientoAlmacenado(bool esLectura = false)
+        {
+            comando.Connection = conexion;
+            if (conexion.State == System.Data.ConnectionState.Closed) conexion.Open();
+
+            //Si es solamente de lectura, iniciamos  lector para poder leer datos. 
+            //IMPORTANTE: Si usamos este procedimiento en un bucle, es necesario al terminar de leer ejecutar limpiarParametros();
+            if(!esLectura) comando.ExecuteNonQuery();
+            else
+            {
+                lector = comando.ExecuteReader();
+            }
+        }
+
 
     }
 }

@@ -15,7 +15,11 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Especialidades: </h5>
-                <p class="card-text">Contacto: <%=medicoSeleccionado.Mail %></p>
+                <%foreach (var especialidad in medicoSeleccionado.Especialidades)
+                  { %>
+                    <p><%=especialidad.Descripcion %></p>
+                <%} %>
+                <p class="card-text"><strong>Contacto:</strong> <%=medicoSeleccionado.Mail %></p>
                 <a href="#" class="btn btn-primary">Modificar datos</a>
             </div>
             <div class="card-footer text-muted">
