@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class Paciente: Usuario
+    public class Paciente : Usuario
     {
-        public int CantidadDeTurnosReservados { get; set; }
+        public List<ObraSocial> ObraSocial { get; set; }
+
+        public DateTime FechaNac { get; set; }
+
+        public Paciente()
+        {
+            Id = 0;
+        }
     }
+
 }
