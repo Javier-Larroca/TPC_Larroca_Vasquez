@@ -15,8 +15,8 @@ namespace Negocio
             List<Medico> listaDeMedicos = new List<Medico>();
             try
             {
-                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM MEDICOS");
-                conexion.ejecutarQueryLectura();
+                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM MEDICOS");
+                conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
                 {
@@ -29,9 +29,13 @@ namespace Negocio
                     backup.Mail = (String)conexion.Lector["CONTACTO"];
                     backup.Matricula = (int)conexion.Lector["MATRICULA"];
                     backup.Alta = (DateTime)conexion.Lector["FECHA_ALTA"];
-                    //backup.Especialidades = especialidadPorMedico(backup.Id);
 
                     listaDeMedicos.Add(backup);
+                }
+                conexion.cerrarConexion();
+
+                foreach (Medico medico in listaDeMedicos){
+                    medico.Especialidades = especialidadPorMedico(medico.Id);
                 }
 
                 return listaDeMedicos;
@@ -51,12 +55,20 @@ namespace Negocio
             List<Especialidad> EspecialidadesMedico = new List<Especialidad>();
             try
             {
-                conexion.setearQuery("EXECUTE pEspecialidadesPorMedico " + id);
-                conexion.ejecutarQueryLectura();
+                //Agrego esta forma de ejecutar un procedimiento almacenado que nos devuelve
+                //datos, en caso de usarlo en algún bucle usar en Finally conexion.limpiarParametros() ya que acumula.
+
+                //conexion.setearProcedimientoAlmacenado("pEspecialidadesPorMedico");
+                //conexion.agregarParametro("@idMedico", id);
+                //conexion.ejecutarProcedimientoAlmacenado(true);
+
+                //Una forma de setear una consulta rapida, aca consulto a la vista creada.
+                conexion.setearConsulta(string.Format("SELECT DESCRIPCION FROM vEspecialidadesPorMedico WHERE IDMEDICO = {0}", id));
+                conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
                 {
-                    Especialidad backup = new Especialidad((String)conexion.Lector["ESPECIALIDAD"]);
+                    Especialidad backup = new Especialidad((String)conexion.Lector["DESCRIPCION"]);
                     EspecialidadesMedico.Add(backup);
                 }
 
