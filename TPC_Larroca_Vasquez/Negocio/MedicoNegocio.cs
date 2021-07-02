@@ -15,7 +15,7 @@ namespace Negocio
             List<Medico> listaDeMedicos = new List<Medico>();
             try
             {
-                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM MEDICOS");
+                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM vDetallesPorMedico");
                 conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
@@ -76,6 +76,32 @@ namespace Negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public bool agregarMedico(Medico medico)
+        {
+
+            try
+            {
+                conexion.setearProcedimientoAlmacenado("pAltaDeMedico");
+                conexion.agregarParametro("@mnombre", medico.Nombre);
+                conexion.agregarParametro("@mApellido", medico.Apellido);
+                conexion.agregarParametro("@mMail", medico.Contacto);
+                conexion.agregarParametro("@mMatricula", medico.Matricula);
+                conexion.ejecutarProcedimientoAlmacenado();
+                
+                //Metodo para validar la cantidad de filas afectadas
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
                 throw ex;
             }
             finally

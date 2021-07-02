@@ -140,3 +140,7 @@ footer p{
 .centrar-texto{
     text-align: center;
 }
+
+.imgCard{
+    inline-size: fit-content;
+}

@@ -16,8 +16,8 @@ namespace Negocio
             List<Paciente> listaDePacientes = new List<Paciente>();
             try
             {
-                conexion.setearQuery("SELECT ID, NOMBRE, APELLIDO, CONTACTO, FECHA_NAC, FECHA_ALTA FROM PACIENTES");
-                conexion.ejecutarQueryLectura();
+                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, FECHA_NAC, FECHA_ALTA FROM PACIENTES");
+                conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
                 {

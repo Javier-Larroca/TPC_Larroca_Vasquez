@@ -4,15 +4,7 @@ GO
 USE LAVE
 GO
 
-<<<<<<< HEAD
-GO
-CREATE TABLE PACIENTES(
-ID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-ID_OBRA_SOCIAL INT FOREIGN KEY REFERENCES OBRAS_SOCIALES(ID),
-NOMBRE VARCHAR(40) NOT NULL,
-APELLIDO VARCHAR(40) NOT NULL,
-CONTACTO VARCHAR(50) NOT NULL,
-=======
+
 CREATE TABLE TIPO_USUARIOS(
 ID INT NOT NULL PRIMARY KEY,
 DESCRIPCION VARCHAR(20) NOT NULL UNIQUE,
@@ -22,7 +14,6 @@ GO
 CREATE TABLE ADM_USUARIOS(
 IDUSUARIO INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 TIPO_USUARIO INT NOT NULL FOREIGN KEY REFERENCES TIPO_USUARIOS(ID),
->>>>>>> 1158e9737d890ef4e024e2e5bec4d25641d71df4
 FECHA_ALTA DATE NOT NULL,
 FECHA_BAJA DATE NULL,
 ESTADO BIT NOT NULL
@@ -35,7 +26,7 @@ DESCRIPCION VARCHAR(40) NOT NULL
 )
 GO
 
-CREATE TABLE PACIENTE(
+CREATE TABLE PACIENTES(
 ID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 IDOBRASOCIAL INT FOREIGN KEY REFERENCES OBRAS_SOCIALES(ID),
 NOMBRE VARCHAR(40) NOT NULL,
@@ -72,24 +63,6 @@ PRIMARY KEY(IDESPECIALIDAD, IDMEDICO)
 )
 GO
 
-<<<<<<< HEAD
-INSERT INTO MEDICOS (NOMBRE,APELLIDO,CONTACTO,MATRICULA, FECHA_ALTA, ESTADO) VALUES ('Elmer','Vasquez','elmerr.vasquez@gmail.com', 123456, GETDATE(), 1), ('Agustin','Larroca', 'agustin.larroca@gmail.com', 789123, GETDATE(), 1), ('Roberto', 'Gonzales','robertogonzales@gmail.com', 142365, GETDATE(), 1)
-GO
-
-INSERT INTO ESPECIALIDADES (DESCRIPCION) VALUES ('Odontologia'), ('Cardiologia'), ('Urologia'), ('Administración y Gestión en enfermería'), ('Alergia e Inmunología'), ('Cirugía de Torax'), ('Cirugia general'), ('Cirugia Pediatrica'), ('Cirugia plastica y reparadora'), ('Cirugia vascular periférica'), ('Clinica Medica'), ('Dermatologia'), ('Diabetología'), ('Endocrinologia'), ('Gastroenterología'), ('Infectología'), ('Neumonología'), ('Neurología'), ('Nutriología'), ('Oftalmología'), ('Oncología'), ('Traumotología'), ('Otorrinolaringología'), ('Patología'), ('Pediatría'), ('Psiquiatría')
-GO
-
-INSERT INTO ESPECIALIDADES_POR_MEDICOS VALUES (1,1), (2,1), (3,1)
-GO
-
-SET DATEFORMAT DMY;
-
-INSERT INTO PACIENTES (ID_OBRA_SOCIAL, NOMBRE, APELLIDO,CONTACTO,FECHA_NAC, FECHA_ALTA, ESTADO) VALUES (1,'Juan','Castro','Juan.Castro@gmail.com', '16/01/1998', GETDATE(), 1), (3,'Gabriel','Reinoso', 'Gabriel.Reinoso@gmail.com', '13/01/1999', GETDATE(), 1), (1,'Agustin', 'Catalan','agustincatalan@gmail.com', '01/06/1998', GETDATE(), 1)
-GO
-
-
-=======
->>>>>>> 1158e9737d890ef4e024e2e5bec4d25641d71df4
 --Procedimiento para listar especialidades por medico
 CREATE PROCEDURE pEspecialidadesPorMedico(@idMedico INT)
 AS
@@ -109,6 +82,13 @@ FROM ESPECIALIDADES esp
 INNER JOIN ESPECIALIDADES_POR_MEDICOS espMed ON espMed.IDESPECIALIDAD = esp.ID
 GO
 
+CREATE VIEW vDetallesPorMedico
+AS
+SELECT med.ID, med.NOMBRE, med.APELLIDO, med.CONTACTO, med.MATRICULA, admUsua.FECHA_ALTA
+FROM ADM_USUARIOS admUsua
+INNER JOIN MEDICOS med ON med.ID = admUsua.IDUSUARIO
+GO
+
 -- Procedimiento para el alta de medico desde aplicación, asignando día y estado automaticamente sin parametro.
 CREATE PROCEDURE pAltaDeMedico(
 @mNombre VARCHAR (40),
@@ -123,7 +103,14 @@ BEGIN TRY
 --Comenzamos la transaccion
 BEGIN TRANSACTION
 --Antes de insertar en Medicos, vamos directo a ADM_USUARIOS para lograr generar un IDUSUARIO
-INSERT INTO ADM_USUARIOS (TIPO_USUARIO, FECHA_ALTA, ESTADO) VALUES (3, GETDATE(), 1)
+DECLARE @tipoUsuario INT
+SET @tipoUsuario = (SELECT ID FROM TIPO_USUARIOS WHERE UPPER(DESCRIPCION) = 'MEDICO')
+
+IF @tipoUsuario IS NULL BEGIN
+	RAISERROR('No existe ningún ID para el tipo de usuario que quiere dar de alta', 16, 1)
+	END
+
+INSERT INTO ADM_USUARIOS (TIPO_USUARIO, FECHA_ALTA, ESTADO) VALUES (@tipoUsuario, GETDATE(), 1)
 DECLARE @idMedico INT
 SET @idMedico = @@IDENTITY
 
@@ -172,5 +159,13 @@ EXECUTE pAltaDeMedico 'Roberto', 'Gonzales','robertogonzales@gmail.com', 142365
 GO
 
 INSERT INTO ESPECIALIDADES_POR_MEDICOS VALUES (1,1), (2,1), (3,1)
+GO
+
+INSERT INTO OBRAS_SOCIALES (DESCRIPCION) VALUES ('Galeno'), ('OSDE'), ('Swiss Medical')
+GO
+
+SET DATEFORMAT DMY;
+
+INSERT INTO PACIENTES (IDOBRASOCIAL, NOMBRE, APELLIDO,CONTACTO,FECHA_NAC, FECHA_ALTA, ESTADO) VALUES (1,'Juan','Castro','Juan.Castro@gmail.com', '16/01/1998', GETDATE(), 1), (3,'Gabriel','Reinoso', 'Gabriel.Reinoso@gmail.com', '13/01/1999', GETDATE(), 1), (1,'Agustin', 'Catalan','agustincatalan@gmail.com', '01/06/1998', GETDATE(), 1)
 GO
 
