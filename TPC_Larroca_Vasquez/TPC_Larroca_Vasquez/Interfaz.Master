@@ -99,7 +99,7 @@
                     <div class="collapse" id="paciente-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li>
-                                <a class="dropdown-item" href="#">Listado de pacientes
+                                <a class="dropdown-item" href="ListaDePacientes">Listado de pacientes
                                 </a>
                             </li>
                             <li>

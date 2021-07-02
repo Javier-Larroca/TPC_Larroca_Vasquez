@@ -16,6 +16,11 @@ namespace Dominio
         {
             Id = 0;
         }
+
+        public Paciente(string nombre, string apellido, string mail, int contacto, int dni) : base(nombre, apellido, mail, contacto, dni)
+        {
+
+        }
     }
 
 }
