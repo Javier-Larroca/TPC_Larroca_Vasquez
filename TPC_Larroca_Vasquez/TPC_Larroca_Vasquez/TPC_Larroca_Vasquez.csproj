@@ -106,7 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AltaDeMedico.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -114,7 +113,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\estilos.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="DetalleMedico.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -128,10 +126,14 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="img\LAVE.png" />
-    <Content Include="Interfaz.Master" />
+    <Content Include="Interfaces\Interfaz.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="ListaDeMedicos.aspx" />
-    <Content Include="ListaDePacientes.aspx" />
+    <Content Include="Medicos\AltaDeMedico.aspx" />
+    <Content Include="Medicos\BajaDeMedico.aspx" />
+    <Content Include="Medicos\DetalleMedico.aspx" />
+    <Content Include="Medicos\ListaDeMedicos.aspx" />
+    <Content Include="Medicos\ModificarMedico.aspx" />
+    <Content Include="Pacientes\ListaDePacientes.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -139,6 +141,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -167,13 +170,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AltaDeMedico.aspx.cs">
-      <DependentUpon>AltaDeMedico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AltaDeMedico.aspx.designer.cs">
-      <DependentUpon>AltaDeMedico.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -190,13 +186,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetalleMedico.aspx.cs">
-      <DependentUpon>DetalleMedico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetalleMedico.aspx.designer.cs">
-      <DependentUpon>DetalleMedico.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,25 +196,53 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaz.Master.cs">
+    <Compile Include="Interfaces\Interfaz.Master.cs">
       <DependentUpon>Interfaz.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaz.Master.designer.cs">
+    <Compile Include="Interfaces\Interfaz.Master.designer.cs">
       <DependentUpon>Interfaz.Master</DependentUpon>
     </Compile>
-    <Compile Include="ListaDeMedicos.aspx.cs">
+    <Compile Include="Medicos\AltaDeMedico.aspx.cs">
+      <DependentUpon>AltaDeMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos\AltaDeMedico.aspx.designer.cs">
+      <DependentUpon>AltaDeMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medicos\BajaDeMedico.aspx.cs">
+      <DependentUpon>BajaDeMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos\BajaDeMedico.aspx.designer.cs">
+      <DependentUpon>BajaDeMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medicos\DetalleMedico.aspx.cs">
+      <DependentUpon>DetalleMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos\DetalleMedico.aspx.designer.cs">
+      <DependentUpon>DetalleMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medicos\ListaDeMedicos.aspx.cs">
       <DependentUpon>ListaDeMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ListaDeMedicos.aspx.designer.cs">
+    <Compile Include="Medicos\ListaDeMedicos.aspx.designer.cs">
       <DependentUpon>ListaDeMedicos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ListaDePacientes.aspx.cs">
+    <Compile Include="Medicos\ModificarMedico.aspx.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos\ModificarMedico.aspx.designer.cs">
+      <DependentUpon>ModificarMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes\ListaDePacientes.aspx.cs">
       <DependentUpon>ListaDePacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ListaDePacientes.aspx.designer.cs">
+    <Compile Include="Pacientes\ListaDePacientes.aspx.designer.cs">
       <DependentUpon>ListaDePacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

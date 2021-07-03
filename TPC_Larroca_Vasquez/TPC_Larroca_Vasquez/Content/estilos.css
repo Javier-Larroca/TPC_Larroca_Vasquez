@@ -144,3 +144,16 @@ footer p{
 .imgCard{
     inline-size: fit-content;
 }
+
+.labelSize{
+    width: 60%;
+}
+
+.inputSize{
+    width: 60%;
+}
+
+.section-alta-usuario{
+    margin-top: 18px;
+    display: flow-root;
+}

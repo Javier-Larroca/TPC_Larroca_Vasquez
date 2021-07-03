@@ -95,7 +95,23 @@ namespace Negocio
                 conexion.agregarParametro("@mMail", medico.Contacto);
                 conexion.agregarParametro("@mMatricula", medico.Matricula);
                 conexion.ejecutarProcedimientoAlmacenado();
-                
+                conexion.limpiarParametros();
+                conexion.cerrarConexion();
+
+                if (medico.Especialidades != null)
+                {
+                   foreach (Especialidad especialidad in medico.Especialidades)
+                    {
+                        conexion.setearConsulta("INSERT INTO ESPECIALIDADES_POR_MEDICO VALUES (@idEspecialidad, @idMedico)");
+                        conexion.agregarParametro("@idEspecialidad", especialidad.Id);
+                        conexion.agregarParametro("@idMedico", medico.Id);
+                        conexion.limpiarParametros();
+                        //Agregar en caso de que falle en el for each, un DELETE que borre las especialidades para esa ID
+                        //Debería ir en un metodo aparte para modificación.
+                        conexion.ejecutarAccion();
+                        conexion.cerrarConexion();
+                    }
+                }
                 //Metodo para validar la cantidad de filas afectadas
                 return true;
             }
