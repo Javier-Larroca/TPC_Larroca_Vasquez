@@ -11,7 +11,7 @@
     <section>
         <div class="card text-center text-white bg-dark mb-3" style="margin-top: 15px; width: 30rem;">
             <div class="card-header">
-                <img src="img/imagenMedicoGeneral.jpg" class="card-img-top imgCard" alt="<%=medicoSeleccionado.Nombre %>"/>
+                <img src="../img/imagenMedicoGeneral.jpg" class="card-img-top imgCard" alt="<%=medicoSeleccionado.Nombre %>"/>
                 <br />
                 <%=medicoSeleccionado.Nombre %> <%=medicoSeleccionado.Apellido %>
             </div>

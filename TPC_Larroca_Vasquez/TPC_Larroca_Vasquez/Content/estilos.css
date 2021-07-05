@@ -156,4 +156,6 @@ footer p{
 .section-alta-usuario{
     margin-top: 18px;
     display: flow-root;
+    width: 82%;
+    margin-bottom: 18px;
 }

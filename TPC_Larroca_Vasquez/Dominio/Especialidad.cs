@@ -11,14 +11,15 @@ namespace Dominio
         public String Descripcion { get; set; }
         public int Id { get; set; }
 
-        public Especialidad()
-        {
-
-        }
-
-        public Especialidad(string descripcion)
+        public Especialidad(String descripcion, int id = 0)
         {
             Descripcion = descripcion;
+            Id = id;
+        }
+
+        public override string ToString()
+        {
+            return Descripcion;
         }
     }
 

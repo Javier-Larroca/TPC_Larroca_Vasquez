@@ -15,3 +15,4 @@ C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_V
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.dll
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.pdb
+C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache

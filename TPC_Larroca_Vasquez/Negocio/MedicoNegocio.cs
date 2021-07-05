@@ -10,6 +10,7 @@ namespace Negocio
     public class MedicoNegocio
     {
         private AccesoDatos conexion = new AccesoDatos();
+        private EspecialidadNegocio especialidades = new EspecialidadNegocio();
         public List<Medico> listarMedicos()
         {
             List<Medico> listaDeMedicos = new List<Medico>();
@@ -32,49 +33,15 @@ namespace Negocio
 
                     listaDeMedicos.Add(backup);
                 }
-                conexion.cerrarConexion();
 
+                //Ciclo foreach para que,a cada medico le cargamos sus respectivas especialidades
                 foreach (Medico medico in listaDeMedicos){
-                    medico.Especialidades = especialidadPorMedico(medico.Id);
+                    medico.Especialidades = especialidades.especialidadPorMedico(medico.Id);
                 }
 
                 return listaDeMedicos;
             }
             catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conexion.cerrarConexion();
-            }
-        }
-
-        public List<Especialidad> especialidadPorMedico(int id)
-        {
-            List<Especialidad> EspecialidadesMedico = new List<Especialidad>();
-            try
-            {
-                //Agrego esta forma de ejecutar un procedimiento almacenado que nos devuelve
-                //datos, en caso de usarlo en algún bucle usar en Finally conexion.limpiarParametros() ya que acumula.
-
-                //conexion.setearProcedimientoAlmacenado("pEspecialidadesPorMedico");
-                //conexion.agregarParametro("@idMedico", id);
-                //conexion.ejecutarProcedimientoAlmacenado(true);
-
-                //Una forma de setear una consulta rapida, aca consulto a la vista creada.
-                conexion.setearConsulta(string.Format("SELECT DESCRIPCION FROM vEspecialidadesPorMedico WHERE IDMEDICO = {0}", id));
-                conexion.ejecutarConsultaLectura();
-
-                while (conexion.Lector.Read())
-                {
-                    Especialidad backup = new Especialidad((String)conexion.Lector["DESCRIPCION"]);
-                    EspecialidadesMedico.Add(backup);
-                }
-
-                return EspecialidadesMedico;
-            }
-            catch (Exception ex)
             {
                 throw ex;
             }
@@ -92,32 +59,40 @@ namespace Negocio
                 conexion.setearProcedimientoAlmacenado("pAltaDeMedico");
                 conexion.agregarParametro("@mnombre", medico.Nombre);
                 conexion.agregarParametro("@mApellido", medico.Apellido);
-                conexion.agregarParametro("@mMail", medico.Contacto);
+                conexion.agregarParametro("@mMail", medico.Mail);
                 conexion.agregarParametro("@mMatricula", medico.Matricula);
                 conexion.ejecutarProcedimientoAlmacenado();
                 conexion.limpiarParametros();
                 conexion.cerrarConexion();
-
-                if (medico.Especialidades != null)
-                {
-                   foreach (Especialidad especialidad in medico.Especialidades)
-                    {
-                        conexion.setearConsulta("INSERT INTO ESPECIALIDADES_POR_MEDICO VALUES (@idEspecialidad, @idMedico)");
-                        conexion.agregarParametro("@idEspecialidad", especialidad.Id);
-                        conexion.agregarParametro("@idMedico", medico.Id);
-                        conexion.limpiarParametros();
-                        //Agregar en caso de que falle en el for each, un DELETE que borre las especialidades para esa ID
-                        //Debería ir en un metodo aparte para modificación.
-                        conexion.ejecutarAccion();
-                        conexion.cerrarConexion();
-                    }
-                }
-                //Metodo para validar la cantidad de filas afectadas
+                
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
+
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        //Metodo para buscar medico por Matricula
+        public int buscarMedico(int numMatricula)
+        {
+            int busqueda;
+            try
+            {
+                    conexion.setearConsulta(string.Format("SELECT ID FROM MEDICOS WHERE MATRICULA = {0}", numMatricula));
+                    conexion.ejecutarConsultaLectura();
+                    conexion.Lector.Read();
+                    busqueda = (int)conexion.Lector["ID"];
+
+                return busqueda;
+            }
+            catch(Exception ex)
+            {
                 throw ex;
             }
             finally
