@@ -60,6 +60,51 @@ namespace TPC_Larroca_Vasquez
         protected global::System.Web.UI.WebControls.Button crearMedico;
 
         /// <summary>
+        /// Warning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Warning;
+
+        /// <summary>
+        /// SuccessMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SuccessMedico;
+
+        /// <summary>
+        /// SuccessLista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SuccessLista;
+
+        /// <summary>
+        /// FailMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FailMedico;
+
+        /// <summary>
+        /// FailLista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FailLista;
+
+        /// <summary>
         /// listaDeEspecialidadesCheckBox control.
         /// </summary>
         /// <remarks>

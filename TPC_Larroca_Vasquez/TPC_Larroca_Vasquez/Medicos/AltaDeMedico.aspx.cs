@@ -15,9 +15,13 @@ namespace TPC_Larroca_Vasquez
         private MedicoNegocio medicoNegocio = new MedicoNegocio();
         private List<Especialidad> listaDeEspecialidades = new List<Especialidad>();
         private Medico medicoAgregado = new Medico();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            SuccessLista.Text = "Se cargaron correctamente las especialidades correspondientes";
+            SuccessMedico.Text = "Se agrego correctamente al usuario ";
+            FailMedico.Text = "ATENCION: No se pudo cargar al usuario ";
+            FailLista.Text = "No se pudieron cargar correctamente las especialidades correspondientes";
             try
             {
                 if (!IsPostBack)
@@ -51,7 +55,6 @@ namespace TPC_Larroca_Vasquez
                 medicoAgregado.Apellido = apellidoMedico.Text;
                 medicoAgregado.Matricula = int.Parse(matriculaMedico.Text);
                 medicoAgregado.Mail = emailMedico.Text;
-                
 
                 foreach (ListItem item in listaDeEspecialidadesCheckBox.Items)
                 {
@@ -67,22 +70,27 @@ namespace TPC_Larroca_Vasquez
 
                 //Agregamos Medico a base y si se agrego correctamente, procedemos a cargarle sus especialidades
                 //Procedemos a buscarlo en la base para obtener su ID
-                if (medicoAgregado.Especialidades != null) 
+                if (medicoAgregado.Especialidades != null)
                 {
-                    medicoNegocio.agregarMedico(medicoAgregado);
-                    medicoAgregado.Id = medicoNegocio.buscarMedico(medicoAgregado.Matricula);
-                    especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado);
-                }
-                else
-                {
-
+                    if (medicoNegocio.agregarMedico(medicoAgregado))
+                    {
+                        SuccessMedico.Visible = true;
+                        medicoAgregado.Id = medicoNegocio.buscarMedico(medicoAgregado.Matricula);
+                        if (!especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado)) FailLista.Visible = true;
+                        else SuccessLista.Visible = true;
+                    }
+                    else
+                    {
+                        FailMedico.Visible = true;
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                Response.Write(ex.Message);
+                Warning.Visible = true;
+
             }
-            
+
         }
     }
 }

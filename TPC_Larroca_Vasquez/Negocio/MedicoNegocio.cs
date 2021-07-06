@@ -100,5 +100,23 @@ namespace Negocio
                 conexion.cerrarConexion();
             }
         }
+
+        public void bajaDeMedico(int idMedico)
+        {
+            try
+            {
+                conexion.setearProcedimientoAlmacenado("pBajaDeMedico");
+                conexion.agregarParametro("@id", idMedico);
+                conexion.ejecutarProcedimientoAlmacenado();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

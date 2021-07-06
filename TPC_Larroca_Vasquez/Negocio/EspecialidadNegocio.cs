@@ -73,7 +73,7 @@ namespace Negocio
             }
         }
 
-        public void altaDeEspecialidadPorMedico(Medico medico)
+        public bool altaDeEspecialidadPorMedico(Medico medico)
         {
             try
             {
@@ -85,9 +85,11 @@ namespace Negocio
                     conexion.ejecutarAccion();
                     conexion.limpiarParametros();
                 }
+                return true;
             }
             catch(Exception ex)
             {
+                return false;
                 throw ex;
             }
             finally

@@ -87,6 +87,7 @@ AS
 SELECT med.ID, med.NOMBRE, med.APELLIDO, med.CONTACTO, med.MATRICULA, admUsua.FECHA_ALTA
 FROM ADM_USUARIOS admUsua
 INNER JOIN MEDICOS med ON med.ID = admUsua.IDUSUARIO
+WHERE admUsua.ESTADO = 1;
 GO
 
 -- Procedimiento para el alta de medico desde aplicación, asignando día y estado automaticamente sin parametro.

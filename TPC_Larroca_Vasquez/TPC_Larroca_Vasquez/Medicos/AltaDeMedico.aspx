@@ -30,6 +30,26 @@
             <%--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>--%>
         </div>
         <asp:Button cssClass="btn btn-primary" text="Crear" ID="crearMedico" OnClick="crearMedico_Click" runat="server"/>
+            <div style="display: flex; margin-top: 10px;">
+                <asp:Label CssClass="alert alert-warning" Visible="false" ID="Warning" runat="server" Text="Debe completar todos los campos obligatorios"></asp:Label></div>
+            <div style="display: flex; margin-top: 10px">
+                <asp:Label CssClass="alert alert-success" Visible="false" ID="SuccessMedico" runat="server">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </asp:Label>
+            </div>
+            <div style="display: flex; margin-top: 10px">
+                <asp:Label CssClass="alert alert-success" Visible="false" ID="SuccessLista" runat="server">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </asp:Label>
+            </div>
+            <div style="display: flex; margin-top: 10px">
+                <asp:Label CssClass="aler alert-danger" Visible="false" ID="FailMedico" runat="server">
+                </asp:Label>
+            </div>
+            <div style="display: flex; margin-top: 10px">
+                <asp:Label CssClass="aler alert-danger" Visible="false" ID="FailLista" runat="server">
+                </asp:Label>
+            </div>
             </div>
         <div style="display: inline-block; float:right;">
             <strong style="font-size: 18px;">Seleccione una o más especialidades:</strong>

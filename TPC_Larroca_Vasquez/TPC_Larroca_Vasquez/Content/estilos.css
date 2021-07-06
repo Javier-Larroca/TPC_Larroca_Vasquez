@@ -98,6 +98,7 @@ main {
 }
 
 footer{
+    display:inline-block;
     background-color: #161a1d;
     width: 100%;
     height: 50px;

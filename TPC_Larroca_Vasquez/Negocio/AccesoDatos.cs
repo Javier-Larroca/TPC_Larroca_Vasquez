@@ -26,7 +26,6 @@ namespace Negocio
             comando.CommandText = query;
         }
 
-        
         public void setearProcedimientoAlmacenado(string procedimiento)
         {
             comando.CommandType = System.Data.CommandType.StoredProcedure;
