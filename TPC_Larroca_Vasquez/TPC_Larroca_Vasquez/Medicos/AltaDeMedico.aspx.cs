@@ -79,10 +79,8 @@ namespace TPC_Larroca_Vasquez
                         if (!especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado)) FailLista.Visible = true;
                         else SuccessLista.Visible = true;
                     }
-                    else
-                    {
-                        FailMedico.Visible = true;
-                    }
+                    else FailMedico.Visible = true;
+                    
                 }
             }
             catch (Exception)
