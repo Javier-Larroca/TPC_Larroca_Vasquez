@@ -76,10 +76,17 @@ namespace Negocio
 
             //Si es solamente de lectura, iniciamos  lector para poder leer datos. 
             //IMPORTANTE: Si usamos este procedimiento en un bucle, es necesario al terminar de leer ejecutar limpiarParametros();
-            if(!esLectura) comando.ExecuteNonQuery();
-            else
+            try
             {
-                lector = comando.ExecuteReader();
+                if (!esLectura) comando.ExecuteNonQuery();
+                else
+                {
+                    lector = comando.ExecuteReader();
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
             }
         }
 

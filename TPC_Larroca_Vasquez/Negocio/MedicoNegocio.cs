@@ -16,7 +16,7 @@ namespace Negocio
             List<Medico> listaDeMedicos = new List<Medico>();
             try
             {
-                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA FROM vDetallesPorMedico");
+                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, MATRICULA, FECHA_ALTA, FECHA_MODIFICACION FROM vDetallesPorMedico");
                 conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
@@ -30,6 +30,9 @@ namespace Negocio
                     backup.Mail = (String)conexion.Lector["CONTACTO"];
                     backup.Matricula = (int)conexion.Lector["MATRICULA"];
                     backup.Alta = (DateTime)conexion.Lector["FECHA_ALTA"];
+                    //If de una linea, casteo a DateTime? para indicar que puede ser nulo, y despues voy a la columna 6
+                    //Osea FECHA_MODIFICACIOn y si es nulo (IsDBNUll) le asigno nulo, caso contrario traigo la fecha
+                    backup.Modificacion = (DateTime?)(conexion.Lector.IsDBNull(6) ? null : conexion.Lector["FECHA_MODIFICACION"]);
 
                     listaDeMedicos.Add(backup);
                 }
@@ -101,17 +104,19 @@ namespace Negocio
             }
         }
 
-        public void bajaDeMedico(int idMedico)
+        public bool bajaDeMedico(int idMedico)
         {
             try
             {
                 conexion.setearProcedimientoAlmacenado("pBajaDeMedico");
-                conexion.agregarParametro("@id", idMedico);
+                conexion.agregarParametro("@idMedico", idMedico);
                 conexion.ejecutarProcedimientoAlmacenado();
+                return true;
             }
             catch(Exception ex)
             {
-                throw ex;
+                return false;
+                throw ex;   
             }
             finally
             {

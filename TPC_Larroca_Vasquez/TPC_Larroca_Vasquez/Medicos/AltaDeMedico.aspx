@@ -5,56 +5,45 @@
     <nav class="navbar navbar-light navColor">
         <div class="container-fluid container-sin-espacios">
             <i class="fas fa-star-of-life"></i>
-            <p> Alta de medico</p>
+            <p>Alta de medico</p>
         </div>
     </nav>
     <section class="section-alta-usuario">
         <div style="display: inline-block; width: 65%;">
-            <strong style ="font-size: 18px;">Cargue los siguientes datos:</strong>
+            <strong style="font-size: 18px;">Cargue los siguientes datos:</strong>
             <br />
-        <div class="mb-3">
-            <label class="form-label">Nombre</label>
-            <asp:TextBox cssClass="form-control inputSize" ID="nombreMedico" runat="server"></asp:TextBox>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Apellido</label>
-            <asp:TextBox cssClass="form-control inputSize" ID="apellidoMedico" runat="server"></asp:TextBox>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Matricula</label>
-            <asp:TextBox cssClass="form-control inputSize" ID="matriculaMedico" runat="server"></asp:TextBox>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <asp:TextBox CssClass="form-control inputSize" type="email" ID="emailMedico" runat="server"></asp:TextBox>
-            <%--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>--%>
-        </div>
-        <asp:Button cssClass="btn btn-primary" text="Crear" ID="crearMedico" OnClick="crearMedico_Click" runat="server"/>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <asp:TextBox CssClass="form-control inputSize" ID="nombreMedico" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <asp:TextBox CssClass="form-control inputSize" ID="apellidoMedico" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Matricula</label>
+                <asp:TextBox CssClass="form-control inputSize" ID="matriculaMedico" runat="server"></asp:TextBox>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <asp:TextBox CssClass="form-control inputSize" type="email" ID="emailMedico" runat="server"></asp:TextBox>
+            </div>
+            <asp:Button CssClass="btn btn-primary" Text="Crear" ID="crearMedico" OnClick="crearMedico_Click" AutoPostback="true" runat="server" />
             <div style="display: flex; margin-top: 10px;">
-                <asp:Label CssClass="alert alert-warning" Visible="false" ID="Warning" runat="server" Text="Debe completar todos los campos obligatorios"></asp:Label></div>
-            <div style="display: flex; margin-top: 10px">
-                <asp:Label CssClass="alert alert-success" Visible="false" ID="SuccessMedico" runat="server">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <asp:Label CssClass="alert alert-warning" Visible="false" role="alert" ID="Warning" runat="server" Text="Debe completar todos los campos obligatorios">
+                    <asp:Button CssClass="btn-close" runat="server" ID="boton" data-bs-dismiss="alert" />
                 </asp:Label>
             </div>
             <div style="display: flex; margin-top: 10px">
-                <asp:Label CssClass="alert alert-success" Visible="false" ID="SuccessLista" runat="server">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <asp:Label CssClass="aler alert-danger" Visible="false" role="alert" ID="FailMedico" runat="server" Text="ATENCION: No se pudo cargar al usuario ">
+                    <asp:Button CssClass="btn-close" runat="server" ID="Button3" data-bs-dismiss="alert" />
                 </asp:Label>
             </div>
-            <div style="display: flex; margin-top: 10px">
-                <asp:Label CssClass="aler alert-danger" Visible="false" ID="FailMedico" runat="server">
-                </asp:Label>
-            </div>
-            <div style="display: flex; margin-top: 10px">
-                <asp:Label CssClass="aler alert-danger" Visible="false" ID="FailLista" runat="server">
-                </asp:Label>
-            </div>
-            </div>
-        <div style="display: inline-block; float:right;">
+        </div>
+        <div style="display: inline-block; float: right;">
             <strong style="font-size: 18px;">Seleccione una o más especialidades:</strong>
             <br />
-            <asp:CheckBoxList ID="listaDeEspecialidadesCheckBox"  runat="server"></asp:CheckBoxList>
+            <asp:CheckBoxList ID="listaDeEspecialidadesCheckBox" runat="server"></asp:CheckBoxList>
         </div>
     </section>
 </asp:Content>
