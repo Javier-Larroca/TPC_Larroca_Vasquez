@@ -183,3 +183,20 @@ footer p{
     padding-top: 5px;
     margin-bottom: 0px;
 }
+
+.input-horario{
+    height: 28px;
+    width: 65px;
+    margin-left: 33px;
+}
+
+.btns-flotantes{
+    display: flex;
+    margin-bottom: -18px;
+    margin-top: 15px;
+    padding-left: 30px;
+}
+
+.btns-flotantes input{
+    margin-right: 10px;
+}

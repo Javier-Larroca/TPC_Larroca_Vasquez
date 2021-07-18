@@ -7,101 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPC_Larroca_Vasquez
+namespace TPC_Larroca_Vasquez.Turnos
 {
 
 
-    public partial class ModificarMedico
+    public partial class ReservarTurno
     {
 
         /// <summary>
-        /// nombreMedico control.
+        /// ScripManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombreMedico;
+        protected global::System.Web.UI.ScriptManager ScripManager1;
 
         /// <summary>
-        /// apellidoMedico control.
+        /// nombrePaciente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox apellidoMedico;
+        protected global::System.Web.UI.WebControls.TextBox nombrePaciente;
 
         /// <summary>
-        /// matriculaMedico control.
+        /// Calendario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox matriculaMedico;
+        protected global::System.Web.UI.WebControls.Calendar Calendario;
 
         /// <summary>
-        /// emailMedico control.
+        /// Especialidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailMedico;
+        protected global::System.Web.UI.WebControls.DropDownList Especialidades;
 
         /// <summary>
-        /// modificarMedico control.
+        /// HorariosDisponibles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button modificarMedico;
+        protected global::System.Web.UI.WebControls.DropDownList HorariosDisponibles;
 
         /// <summary>
-        /// Warning control.
+        /// MedicosDisponibles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Warning;
+        protected global::System.Web.UI.WebControls.DropDownList MedicosDisponibles;
 
         /// <summary>
-        /// boton control.
+        /// reservacionTurno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button boton;
+        protected global::System.Web.UI.WebControls.Button reservacionTurno;
 
         /// <summary>
-        /// FailMedico control.
+        /// Volver control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FailMedico;
-
-        /// <summary>
-        /// Button3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-
-        /// <summary>
-        /// listaDeEspecialidadesCheckBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList listaDeEspecialidadesCheckBox;
+        protected global::System.Web.UI.WebControls.Button Volver;
     }
 }

@@ -20,13 +20,15 @@ namespace TPC_Larroca_Vasquez
         {
             try
             {
-                    //Llamamamos a la base y buscamos todas las especialidades disponibles para usarla en checkbox
-                    //Y después buscamos en la misma lista las que el usuario seleccione
+                //Llamamamos a la base y buscamos todas las especialidades disponibles para usarla en checkbox
+                //Y después buscamos en la misma lista las que el usuario seleccione
+                if(!IsPostBack){
                     listaDeEspecialidades = especialidadNegocio.listaDeEspecialidades();
                     listaDeEspecialidadesCheckBox.DataSource = listaDeEspecialidades;
                     listaDeEspecialidadesCheckBox.DataBind();
 
                     Session.Add("Especialidades", listaDeEspecialidades);
+                }
             }
             catch (Exception ex)
             {

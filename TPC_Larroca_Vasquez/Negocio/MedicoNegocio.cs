@@ -11,6 +11,7 @@ namespace Negocio
     {
         private AccesoDatos conexion = new AccesoDatos();
         private EspecialidadNegocio especialidades = new EspecialidadNegocio();
+        private TurnoDeTrabajoNegocio turnosDeTrabajo = new TurnoDeTrabajoNegocio();
         public List<Medico> listarMedicos()
         {
             List<Medico> listaDeMedicos = new List<Medico>();
@@ -37,9 +38,10 @@ namespace Negocio
                     listaDeMedicos.Add(backup);
                 }
 
-                //Ciclo foreach para que,a cada medico le cargamos sus respectivas especialidades
+                //Ciclo foreach para que,a cada medico le cargamos sus respectivas especialidades y turnos de trabajo
                 foreach (Medico medico in listaDeMedicos){
                     medico.Especialidades = especialidades.especialidadPorMedico(medico.Id);
+                    medico.TurnosDeTrabajo = turnosDeTrabajo.obtenerTurnosDeTrabajo(medico.Id);
                 }
 
                 return listaDeMedicos;
@@ -122,6 +124,31 @@ namespace Negocio
             {
                 conexion.cerrarConexion();
             }
+        }
+        public bool modificarMedico(Medico medicoAModificar)
+        {
+            try
+            {
+                conexion.setearProcedimientoAlmacenado("pModificacionDeMedico");
+                conexion.agregarParametro("@mId", medicoAModificar.Id);
+                conexion.agregarParametro("@mNombre", medicoAModificar.Nombre);
+                conexion.agregarParametro("@mApellido", medicoAModificar.Apellido);
+                conexion.agregarParametro("@mMail", medicoAModificar.Mail);
+                conexion.agregarParametro("@mMatricula", medicoAModificar.Matricula);
+                conexion.ejecutarProcedimientoAlmacenado();
+                conexion.limpiarParametros();
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+           
         }
     }
 }

@@ -7,12 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPC_Larroca_Vasquez
+namespace TPC_Larroca_Vasquez.Medicos
 {
 
 
-    public partial class DetalleMedico
+    public partial class AsignacionTurnoDeTrabajos
     {
+
+        /// <summary>
+        /// ScripManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScripManager1;
+
+        /// <summary>
+        /// Modificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Modificar;
 
         /// <summary>
         /// Volver control.
@@ -24,39 +42,30 @@ namespace TPC_Larroca_Vasquez
         protected global::System.Web.UI.WebControls.Button Volver;
 
         /// <summary>
-        /// SuccessMedico control.
+        /// Guardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SuccessMedico;
+        protected global::System.Web.UI.WebControls.Button Guardar;
 
         /// <summary>
-        /// Button1 control.
+        /// Cancelar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Cancelar;
 
         /// <summary>
-        /// FailMedico control.
+        /// tabla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FailMedico;
-
-        /// <summary>
-        /// Button4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Repeater tabla;
     }
 }

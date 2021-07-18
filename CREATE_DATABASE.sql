@@ -65,6 +65,16 @@ PRIMARY KEY(IDESPECIALIDAD, IDMEDICO)
 )
 GO
 
+CREATE TABLE TURNOS_DE_TRABAJO(
+IDMEDICO INT NOT NULL FOREIGN KEY REFERENCES MEDICOS(ID),
+DIA VARCHAR (10) NOT NULL CHECK(DIA = 'LUNES' OR DIA = 'MARTES' OR DIA = 'MIERCOLES' OR DIA = 'JUEVES' OR DIA = 'VIERNES' OR DIA = 'SABADO' OR DIA = 'DOMINGO'),
+HORARIO_INGRESO VARCHAR(5) NULL,
+HORARIO_SALIDA VARCHAR(5) NULL, 
+DIA_LIBRE BIT NOT NULL,
+PRIMARY KEY (IDMEDICO, DIA)
+)
+GO
+
 --Procedimiento para listar especialidades por medico
 CREATE PROCEDURE pEspecialidadesPorMedico(@idMedico INT)
 AS
@@ -142,6 +152,94 @@ CREATE PROCEDURE pBajaDeMedico(@idMedico INT)
 AS 
 BEGIN
 UPDATE ADM_USUARIOS SET FECHA_BAJA = GETDATE(), ESTADO = 0 WHERE IDUSUARIO = @idMedico 
+END
+GO
+
+CREATE PROCEDURE pModificacionDeMedico(
+@mId INT,    
+@mNombre VARCHAR (40),
+@mApellido VARCHAR (40),
+@mMail VARCHAR(50),
+@mMatricula INT
+)
+AS 
+BEGIN
+--Manejo de errores
+BEGIN TRY 
+--Comenzamos la transaccion
+BEGIN TRANSACTION
+--Antes de actulizar Medicos, vamos directo a ADM_USUARIOS a ingresar fecha de modificación
+DECLARE @existeUsuario INT
+SET @existeUsuario = (SELECT COUNT(*) FROM ADM_USUARIOS WHERE IDUSUARIO = @mId)
+
+IF @existeUsuario != 1 
+BEGIN
+	RAISERROR('Error al buscar ID de usuario', 16, 1)
+END
+
+--Actualizamos tabla de medicos
+UPDATE MEDICOS SET NOMBRE = @mNombre, APELLIDO = @mApellido, CONTACTO = @mMail, MATRICULA = @mMatricula
+WHERE ID = @mId
+IF @@ROWCOUNT = 0
+BEGIN
+    RAISERROR('No se pudo actualizar tabla de Medicos', 16, 1)
+END
+
+--Borramos lista de especialidades asignadas, para ingresar las nuevas en otro procedimiento
+DELETE FROM ESPECIALIDADES_POR_MEDICO WHERE IDMEDICO = @mId
+IF(SELECT COUNT(*) FROM ESPECIALIDADES_POR_MEDICO WHERE IDMEDICO = @mId) != 0
+BEGIN
+    RAISERROR('No se pudo borrar lista de especialidades', 16,1)
+END
+
+--Actualizamos tabla de usuarios
+UPDATE ADM_USUARIOS SET FECHA_MODIFICACION = GETDATE()
+WHERE IDUSUARIO = @mId
+IF @@ROWCOUNT = 0
+BEGIN
+    RAISERROR('No se puedo actualizar tabla de usuarios', 16, 1)
+END
+
+--Ejecutamos COMMIT de la transaccion
+COMMIT TRANSACTION
+END TRY
+
+--Empieza Catch, cualquier error generado anterior, se imprimirá y se hará rollback de la transaccion
+BEGIN CATCH
+PRINT ERROR_MESSAGE()
+ROLLBACK TRANSACTION
+END CATCH
+--Finaliza maneja de errores
+END
+GO
+
+CREATE PROCEDURE pModificarTurnosDeTrabajo(@idMedico INT, @dia VARCHAR(10), @hIngreso VARCHAR(5), @hSalida VARCHAR(5), @diaLibre BIT)
+AS 
+BEGIN
+BEGIN TRY
+
+BEGIN TRANSACTION
+UPDATE TURNOS_DE_TRABAJO SET HORARIO_INGRESO = @hIngreso, HORARIO_SALIDA = @hSalida, DIA_LIBRE = @diaLibre
+WHERE IDMEDICO = @idMedico
+AND DIA = @dia
+
+IF @@ROWCOUNT != 1 BEGIN
+RAISERROR('Error al actualizar tabla', 16,1)
+END
+
+UPDATE ADM_USUARIOS SET FECHA_MODIFICACION = GETDATE() WHERE IDUSUARIO = @idMedico
+
+IF @@ROWCOUNT != 1 BEGIN
+RAISERROR('Error al actualizar tabla usuarios', 16, 1)
+END
+
+COMMIT TRANSACTION
+
+END TRY
+
+BEGIN CATCH
+PRINT ERROR_MESSAGE();
+END CATCH
 END
 GO
 

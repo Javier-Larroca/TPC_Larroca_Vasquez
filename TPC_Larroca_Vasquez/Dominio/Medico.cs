@@ -9,7 +9,7 @@ namespace Dominio
     public class Medico : Usuario
     {
         public List<Especialidad> Especialidades { get; set; }
-        public TurnoDeTrabajo TurnoDeTrabajo { get; set; }
+        public List<TurnoDeTrabajo> TurnosDeTrabajo { get; set; }
         public int CantidadDeTurnosAsignados { get; set; }
         public int Matricula { get; set; }
 
@@ -23,6 +23,12 @@ namespace Dominio
         { 
             CantidadDeTurnosAsignados = 0;
             Matricula = matricula;
+            TurnosDeTrabajo = new List<TurnoDeTrabajo>();
+        }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Apellido; 
         }
     }
 }
