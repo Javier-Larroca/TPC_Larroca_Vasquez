@@ -133,6 +133,8 @@
     <Content Include="Medicos\DetalleMedico.aspx" />
     <Content Include="Medicos\ListaDeMedicos.aspx" />
     <Content Include="Medicos\ModificarMedico.aspx" />
+    <Content Include="Pacientes\AltaPaciente.aspx" />
+    <Content Include="Pacientes\DetallePacientes.aspx" />
     <Content Include="Pacientes\ListaDePacientes.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -237,6 +239,20 @@
     </Compile>
     <Compile Include="Medicos\ModificarMedico.aspx.designer.cs">
       <DependentUpon>ModificarMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes\AltaPaciente.aspx.cs">
+      <DependentUpon>AltaPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pacientes\AltaPaciente.aspx.designer.cs">
+      <DependentUpon>AltaPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes\DetallePacientes.aspx.cs">
+      <DependentUpon>DetallePacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pacientes\DetallePacientes.aspx.designer.cs">
+      <DependentUpon>DetallePacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pacientes\ListaDePacientes.aspx.cs">
       <DependentUpon>ListaDePacientes.aspx</DependentUpon>

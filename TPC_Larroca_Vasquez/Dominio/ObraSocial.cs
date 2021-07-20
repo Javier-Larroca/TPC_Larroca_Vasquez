@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class ObraSocial
     {
-        public String Descripcion { get; set; }
+        public string Descripcion { get; set; }
         public int Id { get; set; }
 
         public ObraSocial()
@@ -19,6 +19,17 @@ namespace Dominio
         public ObraSocial(string descripcion)
         {
             Descripcion = descripcion;
+        }
+
+        public ObraSocial(string descripcion, int id = 0)
+        {
+            Descripcion = descripcion;
+            Id = id;
+        }
+
+        public override string ToString()
+        {
+            return Descripcion;
         }
     }
 }

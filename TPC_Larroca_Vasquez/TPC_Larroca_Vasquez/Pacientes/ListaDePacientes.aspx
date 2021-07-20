@@ -30,7 +30,7 @@
                    <td class="centrar-texto"><%=paciente.FechaNac %></td>
                    <td class="centrar-texto"><%=paciente.Mail %></td>
                    <td class="centrar-texto">
-                       <a href="DetallePaciente?id=<%=paciente.Id %>" style="align-items: center;">
+                       <a href="DetallePacientes?id=<%=paciente.Id %>" style="align-items: center;">
                            <i class="fas fa-search-plus" style="color: black;"></i>
                        </a>
                    </td>

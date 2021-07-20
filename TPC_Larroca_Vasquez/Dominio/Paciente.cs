@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Dominio
 {
     public class Paciente : Usuario
     {
-        public List<ObraSocial> ObraSocial { get; set; }
+        public ObraSocial ObraSocial { get; set; }
 
         public DateTime FechaNac { get; set; }
 

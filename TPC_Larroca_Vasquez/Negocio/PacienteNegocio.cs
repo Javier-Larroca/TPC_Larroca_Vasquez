@@ -16,7 +16,7 @@ namespace Negocio
             List<Paciente> listaDePacientes = new List<Paciente>();
             try
             {
-                conexion.setearConsulta("SELECT ID, NOMBRE, APELLIDO, CONTACTO, FECHA_NAC, FECHA_ALTA FROM PACIENTES");
+                conexion.setearConsulta("SELECT P.ID, P.NOMBRE, P.APELLIDO, P.CONTACTO, P.FECHA_NAC, P.FECHA_ALTA, P.IDOBRASOCIAL, O.DESCRIPCION  FROM PACIENTES as P INNER JOIN OBRAS_SOCIALES as O ON P.IDOBRASOCIAL = O.ID");
                 conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())
@@ -25,12 +25,12 @@ namespace Negocio
 
                     //Cargamos objeto utilizando Medico backup
                     backup.Id = (int)conexion.Lector["ID"];
-                    backup.Nombre = (String)conexion.Lector["NOMBRE"];
-                    backup.Apellido = (String)conexion.Lector["APELLIDO"];
-                    backup.Mail = (String)conexion.Lector["CONTACTO"];
+                    backup.Nombre = (string)conexion.Lector["NOMBRE"];
+                    backup.Apellido = (string)conexion.Lector["APELLIDO"];
+                    backup.Mail = (string)conexion.Lector["CONTACTO"];
                     backup.FechaNac = (DateTime)conexion.Lector["FECHA_NAC"];
                     backup.Alta = (DateTime)conexion.Lector["FECHA_ALTA"];
-                    //backup.Especialidades = especialidadPorMedico(backup.Id);
+                    backup.ObraSocial.Descripcion = (string)conexion.Lector["DESCRIPCION"];
 
                     listaDePacientes.Add(backup);
                 }
