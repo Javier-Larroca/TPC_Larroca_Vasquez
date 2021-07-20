@@ -30,6 +30,7 @@ namespace Negocio
                     backup.Mail = (string)conexion.Lector["CONTACTO"];
                     backup.FechaNac = (DateTime)conexion.Lector["FECHA_NAC"];
                     backup.Alta = (DateTime)conexion.Lector["FECHA_ALTA"];
+                    backup.ObraSocial.Id = (int)conexion.Lector["IDOBRASOCIAL"];
                     backup.ObraSocial.Descripcion = (string)conexion.Lector["DESCRIPCION"];
 
                     listaDePacientes.Add(backup);

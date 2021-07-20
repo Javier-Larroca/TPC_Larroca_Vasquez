@@ -16,6 +16,7 @@ namespace Dominio
         public Paciente()
         {
             Id = 0;
+            ObraSocial = new ObraSocial();
         }
 
         public Paciente(string nombre, string apellido, string mail, int contacto, int dni) : base(nombre, apellido, mail, contacto, dni)
