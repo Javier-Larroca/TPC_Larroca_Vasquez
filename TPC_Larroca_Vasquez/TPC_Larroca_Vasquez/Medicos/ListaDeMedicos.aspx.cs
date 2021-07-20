@@ -16,6 +16,7 @@ namespace TPC_Larroca_Vasquez
         {
             try
             {
+                if (Request.QueryString["Med"] != null) evaluarQueryString(Request.QueryString["Med"], Request.QueryString["List"]);
                 if (!IsPostBack)
                 {
                     negocio = new MedicoNegocio();
@@ -28,6 +29,13 @@ namespace TPC_Larroca_Vasquez
                 Response.Redirect("Inicio");
             }
             
+        }
+
+        private void evaluarQueryString(string estadoMedico, string estadolista)
+        {
+            if (estadoMedico.ToUpper() == "TRUE") SuccessMedico.Visible = true;
+            if (estadolista.ToUpper() == "TRUE") SuccessLista.Visible = true;
+            else FailLista.Visible = true;
         }
 
     }

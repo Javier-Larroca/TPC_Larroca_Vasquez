@@ -18,16 +18,11 @@ namespace TPC_Larroca_Vasquez
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SuccessLista.Text = "Se cargaron correctamente las especialidades correspondientes";
-            SuccessMedico.Text = "Se agrego correctamente al usuario ";
-            FailMedico.Text = "ATENCION: No se pudo cargar al usuario ";
-            FailLista.Text = "No se pudieron cargar correctamente las especialidades correspondientes";
             try
             {
-                if (!IsPostBack)
-                {
-                    //Llamamamos a la base y buscamos todas las especialidades disponibles para usarla en checkbox
-                    //Y después buscamos en la misma lista las que el usuario seleccione
+                //Llamamamos a la base y buscamos todas las especialidades disponibles para usarla en checkbox
+                //Y después buscamos en la misma lista las que el usuario seleccione
+                if(!IsPostBack){
                     listaDeEspecialidades = especialidadNegocio.listaDeEspecialidades();
                     listaDeEspecialidadesCheckBox.DataSource = listaDeEspecialidades;
                     listaDeEspecialidadesCheckBox.DataBind();
@@ -37,7 +32,6 @@ namespace TPC_Larroca_Vasquez
             }
             catch (Exception ex)
             {
-                Response.Redirect("../Inicio");
                 Response.Write(ex.Message);
             }
 
@@ -55,6 +49,10 @@ namespace TPC_Larroca_Vasquez
                 medicoAgregado.Apellido = apellidoMedico.Text;
                 medicoAgregado.Matricula = int.Parse(matriculaMedico.Text);
                 medicoAgregado.Mail = emailMedico.Text;
+                bool succes;
+                bool succesLista;
+
+                validarDatos(medicoAgregado.Matricula, medicoAgregado.Mail);
 
                 foreach (ListItem item in listaDeEspecialidadesCheckBox.Items)
                 {
@@ -70,25 +68,34 @@ namespace TPC_Larroca_Vasquez
 
                 //Agregamos Medico a base y si se agrego correctamente, procedemos a cargarle sus especialidades
                 //Procedemos a buscarlo en la base para obtener su ID
-                if (medicoAgregado.Especialidades != null)
+                //Linea 72, en caso de algún error no arrrojamos una excepción ya que si entro al IF es porque pudo agregar
+                //al medico. En ese caso, pasamos succesLista como false para informar en ListaDeMedicos que no se agregaron especialdiades.
+                //Mismo si se generó algún error al agregarlos, lo pasamos como false para informar lo mismo
+
+                if (medicoNegocio.agregarMedico(medicoAgregado))
                 {
-                    if (medicoNegocio.agregarMedico(medicoAgregado))
-                    {
-                        SuccessMedico.Visible = true;
-                        medicoAgregado.Id = medicoNegocio.buscarMedico(medicoAgregado.Matricula);
-                        if (!especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado)) FailLista.Visible = true;
-                        else SuccessLista.Visible = true;
-                    }
-                    else FailMedico.Visible = true;
-                    
+                    succes = true;
+                    medicoAgregado.Id = medicoNegocio.buscarMedico(medicoAgregado.Matricula);
+                    if (medicoAgregado.Especialidades == null) succesLista = false;
+                       else succesLista = especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado);
+                    Response.Redirect("ListaDeMedicos?Med=" + succes + "&List=" + succesLista, false);
                 }
+                else FailMedico.Visible = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Warning.Text = ex.Message;
                 Warning.Visible = true;
 
             }
 
         }
+        private void validarDatos(int matricula, string mail)
+        {
+            List<Medico> medicos = medicoNegocio.listarMedicos();
+            if (medicos.Exists(Busqueda => Busqueda.Matricula == matricula)) throw new Exception("Ya existe un usuario dado de alta el numero de matricula ingresado");
+            if (medicos.Exists(Busqueda => Busqueda.Mail.ToUpper().Contains(mail.ToUpper()))) throw new Exception("Ya existe un usuario dado de alta con el mail ingresado");
+        }
+
     }
 }

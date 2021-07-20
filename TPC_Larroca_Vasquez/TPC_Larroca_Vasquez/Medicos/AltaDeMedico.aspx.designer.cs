@@ -69,22 +69,13 @@ namespace TPC_Larroca_Vasquez
         protected global::System.Web.UI.WebControls.Label Warning;
 
         /// <summary>
-        /// SuccessMedico control.
+        /// boton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SuccessMedico;
-
-        /// <summary>
-        /// SuccessLista control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SuccessLista;
+        protected global::System.Web.UI.WebControls.Button boton;
 
         /// <summary>
         /// FailMedico control.
@@ -96,13 +87,13 @@ namespace TPC_Larroca_Vasquez
         protected global::System.Web.UI.WebControls.Label FailMedico;
 
         /// <summary>
-        /// FailLista control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FailLista;
+        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
         /// listaDeEspecialidadesCheckBox control.

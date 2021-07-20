@@ -17,6 +17,7 @@ namespace Dominio
         public bool Activo{ get; set; }
         public string Contraseña{ get; set; }
         public DateTime Alta{ get; set; }
+        public DateTime? Modificacion { get; set; }
 
         //Le agrego '?' al DatTime para indicar que puede ser nulleable por definicion de BBDD
         public DateTime? Baja{ get; set; }

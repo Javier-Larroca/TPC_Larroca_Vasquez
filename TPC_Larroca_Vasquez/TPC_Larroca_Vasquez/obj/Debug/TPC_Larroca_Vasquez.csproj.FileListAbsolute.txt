@@ -150,6 +150,10 @@ C:\Users\javie\Desktop\clinica\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larro
 C:\Users\javie\Desktop\clinica\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\obj\Debug\TPC_Larroca_Vasquez.csproj.CopyComplete
 C:\Users\javie\Desktop\clinica\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\obj\Debug\TPC_Larroca_Vasquez.dll
 C:\Users\javie\Desktop\clinica\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\obj\Debug\TPC_Larroca_Vasquez.pdb
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\Dominio.dll
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\Negocio.dll
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\Dominio.pdb
+C:\Users\evasquez\Desktop\Elmer - Privado\UTN\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\Negocio.pdb
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\TPC_Larroca_Vasquez.dll.config
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\TPC_Larroca_Vasquez.dll
 C:\Users\evasquez\Desktop\Git\Programacion III\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\TPC_Larroca_Vasquez\bin\TPC_Larroca_Vasquez.pdb
