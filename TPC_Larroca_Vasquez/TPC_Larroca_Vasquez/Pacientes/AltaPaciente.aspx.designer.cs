@@ -11,7 +11,7 @@ namespace TPC_Larroca_Vasquez
 {
 
 
-    public partial class AltaDePaciente
+    public partial class AltaPaciente
     {
 
         /// <summary>
@@ -40,6 +40,15 @@ namespace TPC_Larroca_Vasquez
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox emailPaciente;
+
+        /// <summary>
+        /// idObraSocial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList idObraSocial;
 
         /// <summary>
         /// crearPaciente control.

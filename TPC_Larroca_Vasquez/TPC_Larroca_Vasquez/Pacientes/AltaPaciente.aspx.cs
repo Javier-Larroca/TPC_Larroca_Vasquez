@@ -19,20 +19,17 @@ namespace TPC_Larroca_Vasquez
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            //SuccessLista.Text = "Se cargaron correctamente las especialidades correspondientes";
-            //SuccessPaciente.Text = "Se agrego correctamente al usuario ";
-            //FailMedico.Text = "ATENCION: No se pudo cargar al usuario ";
-            //FailLista.Text = "No se pudieron cargar correctamente las especialidades correspondientes";
+            SuccessLista.Text = "Se cargaron correctamente las especialidades correspondientes";
+            SuccessPaciente.Text = "Se agrego correctamente al usuario ";
+            FailPaciente.Text = "ATENCION: No se pudo cargar al usuario ";
+            FailLista.Text = "No se pudieron cargar correctamente las especialidades correspondientes";
             try
             {
                 if (!IsPostBack)
                 {
-                    //Llamamamos a la base y buscamos todas las especialidades disponibles para usarla en checkbox
-                    //Y después buscamos en la misma lista las que el usuario seleccione
-                    listaDeObrasSociales = obraSocialNegocio.listaDeObrasSociales();
+                    idObraSocial.DataSource = obraSocialNegocio.listaDeObrasSociales();
+                    idObraSocial.DataBind();
 
-
-                    Session.Add("ObrasSociales", listaDeObrasSociales);
                 }
             }
             catch (Exception ex)
@@ -43,40 +40,37 @@ namespace TPC_Larroca_Vasquez
 
         }
 
-        //protected void crearPaciente_Click(object sender, EventArgs e)
-        //{
+        protected void crearPaciente_Click(object sender, EventArgs e)
+        {
 
-        //    try
-        //    {
-        //        //Cargamos las listas de especialidades que guardamos en Session
-        //        listaDeObrasSociales = (List<ObraSocial>)Session["ObrasSociales"];
-        //        List<Especialidad> especialidadesSeleccionadas = new List<Especialidad>();
-        //        //pacienteAgregado.Nombre = nombrePaciente.Text;
-        //        //pacienteAgregado.Apellido = apellidoPaciente.Text;
-        //        //pacienteAgregado.Mail = emailPaciente.Text;
+            try
+            {
+                //Cargamos las listas de especialidades que guardamos en Session
+                //listaDeObrasSociales = (List<ObraSocial>)Session["ObrasSociales"];
+                //List<Especialidad> especialidadesSeleccionadas = new List<Especialidad>();
+                pacienteAgregado.Nombre = nombrePaciente.Text;
+                pacienteAgregado.Apellido = apellidoPaciente.Text;
+                pacienteAgregado.Mail = emailPaciente.Text;
+                pacienteAgregado.ObraSocial.Id = idObraSocial.SelectedIndex;
 
 
-        //        //Agregamos Medico a base y si se agrego correctamente, procedemos a cargarle sus especialidades
-        //        //Procedemos a buscarlo en la base para obtener su ID
-        //        if (medicoAgregado.Especialidades != null)
-        //        {
-        //            if (medicoNegocio.agregarMedico(medicoAgregado))
-        //            {
-        //                SuccessMedico.Visible = true;
-        //                medicoAgregado.Id = medicoNegocio.buscarMedico(medicoAgregado.Matricula);
-        //                if (!especialidadNegocio.altaDeEspecialidadPorMedico(medicoAgregado)) FailLista.Visible = true;
-        //                else SuccessLista.Visible = true;
-        //            }
-        //            else FailMedico.Visible = true;
+                    if (pacienteNegocio.agregarPaciente(pacienteAgregado))
+                    {
+                        SuccessPaciente.Visible = true;
+                        //pacienteAgregado.Id = pacienteNegocio.buscarPaciente(pacienteAgregado.Id);
+                        //if (!especialidadNegocio.altaDeEspecialidadPorMedico(pacienteAgregado)) FailLista.Visible = true;
+                        SuccessLista.Visible = true;
+                    }
+                    else FailPaciente.Visible = true;
 
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Warning.Visible = true;
+                
+            }
+            catch (Exception)
+            {
+                Warning.Visible = true;
 
-        //    }
+            }
 
-        //}
+        }
     }
 }

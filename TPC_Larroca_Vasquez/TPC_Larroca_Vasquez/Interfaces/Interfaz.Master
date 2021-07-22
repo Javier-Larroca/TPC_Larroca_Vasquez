@@ -99,7 +99,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Alta de paciente
+                                <a class="dropdown-item" href="../Pacientes/AltaPaciente">Alta de paciente
                                 </a>
                             </li>
                             <li>

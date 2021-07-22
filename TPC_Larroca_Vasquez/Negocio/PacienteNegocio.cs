@@ -47,5 +47,32 @@ namespace Negocio
                 conexion.cerrarConexion();
             }
         }
+
+        public bool agregarPaciente(Paciente paciente)
+        {
+
+            try
+            {
+                conexion.setearProcedimientoAlmacenado("pAltaDePaciente");
+                conexion.agregarParametro("@pnombre", paciente.Nombre);
+                conexion.agregarParametro("@pApellido", paciente.Apellido);
+                conexion.agregarParametro("@pMail", paciente.Mail);
+                conexion.agregarParametro("@pIdObraSocial", paciente.ObraSocial.Id);
+                conexion.ejecutarProcedimientoAlmacenado();
+                conexion.limpiarParametros();
+                conexion.cerrarConexion();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

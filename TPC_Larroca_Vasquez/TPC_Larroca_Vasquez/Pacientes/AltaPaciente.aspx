@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../Interfaces/Interfaz.Master" AutoEventWireup="true" CodeBehind="AltaPaciente.aspx.cs" Inherits="TPC_Larroca_Vasquez.AltaDeMedico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="../Interfaces/Interfaz.Master" AutoEventWireup="true" CodeBehind="AltaPaciente.aspx.cs" Inherits="TPC_Larroca_Vasquez.AltaPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -26,6 +26,14 @@
             <asp:TextBox CssClass="form-control inputSize" type="email" ID="emailPaciente" runat="server"></asp:TextBox>
             <%--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>--%>
         </div>
+
+            
+        <div class="mb-3">
+            <label class="form-label">Obra Social</label>
+            <asp:DropDownList runat="server" ID="idObraSocial" cssClass="form-control inputSize dropdown-toggle">
+            </asp:DropDownList>
+        </div>
+
         <asp:Button cssClass="btn btn-primary" text="Crear" ID="crearPaciente" OnClick="crearPaciente_Click" runat="server"/>
             <div style="display: flex; margin-top: 10px;">
                 <asp:Label CssClass="alert alert-warning" Visible="false" ID="Warning" runat="server" Text="Debe completar todos los campos obligatorios"></asp:Label></div>
