@@ -40,6 +40,18 @@ namespace Negocio
 
         }
 
+        public void correoNotificacionNuevoPaciente(Paciente paciente)
+        {
+            email = new MailMessage();
+            email.From = new MailAddress("noresponder@clinicalave.com");
+            email.To.Add(paciente.Mail);
+            email.Subject = "Notificacion de registro";
+            email.IsBodyHtml = true;
+            email.Body = "<h1>¡Usted ha sido registrado con exito!</h1> " +
+                         "<br>Hola," + paciente.Nombre + " te notificacamos desde Clinica LAVE que lo hemos registrado exitosamente." +
+                         "<h6>Desde ya muchas gracias. Saludos.</h6>";
+        }
+
         public void enviarEmail()
         {
             try

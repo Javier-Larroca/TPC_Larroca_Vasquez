@@ -4,31 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
 using Negocio;
+using Dominio;
 
-namespace TPC_Larroca_Vasquez
+namespace TPC_Larroca_Vasquez.Pacientes
 {
-    public partial class AltaPaciente : System.Web.UI.Page
+    public partial class ModificarPaciente : System.Web.UI.Page
     {
         private ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
         private PacienteNegocio pacienteNegocio = new PacienteNegocio();
         private List<ObraSocial> listaDeObrasSociales = new List<ObraSocial>();
-        private Paciente pacienteAgregado = new Paciente();
-
+        private Paciente pacienteModificado = new Paciente();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            SuccessPaciente.Text = "Se agrego correctamente el paciente";
-            FailPaciente.Text = "ATENCION: No se pudo cargar el paciente ";
+
+            SuccessPaciente.Text = "Se modifico correctamente el paciente";
+            FailPaciente.Text = "ATENCION: No se pudo modificar al usuario ";
+
 
             try
             {
+                pacienteModificado = (Paciente)Session["PacienteSeleccionado"];
                 if (!IsPostBack)
                 {
-                    idObraSocial.DataSource = obraSocialNegocio.listaDeObrasSociales();
-                    idObraSocial.DataBind();
-
                     List<int> anio = new List<int>();
                     for (int x = 1900; x < 2022; x++)
                     {
@@ -36,35 +34,50 @@ namespace TPC_Larroca_Vasquez
                     }
                     anioNac.DataSource = anio;
                     anioNac.DataBind();
+
+                    nombrePaciente.Text = pacienteModificado.Nombre; 
+                    apellidoPaciente.Text = pacienteModificado.Apellido;
+                    emailPaciente.Text = pacienteModificado.Mail;
+
+                    idObraSocial.DataSource = obraSocialNegocio.listaDeObrasSociales();
+                    idObraSocial.DataBind();
+                    idObraSocial.SelectedValue = pacienteModificado.ObraSocial.Descripcion;
+
+                    anioNac.SelectedValue = pacienteModificado.FechaNac.Year.ToString();
+                    mesNac.SelectedValue = pacienteModificado.FechaNac.Month.ToString();
+                    diaNac.SelectedValue = pacienteModificado.FechaNac.Day.ToString();
                 }
+                else if (pacienteModificado == null) throw new Exception("No se seleccionó ningún paciente para modificar");
             }
             catch (Exception ex)
             {
                 Response.Redirect("../Inicio");
                 Response.Write(ex.Message);
             }
-
         }
 
-        protected void crearPaciente_Click(object sender, EventArgs e)
+        protected void modificarPaciente_Click(object sender, EventArgs e)
         {
 
             try
             {
                 List<ObraSocial> oS = obraSocialNegocio.listaDeObrasSociales();
-                pacienteAgregado.Nombre = nombrePaciente.Text;
-                pacienteAgregado.Apellido = apellidoPaciente.Text;
-                pacienteAgregado.Mail = emailPaciente.Text;
-                string fecha = anioNac.SelectedValue+"/"+mesNac.SelectedValue+"/"+diaNac.SelectedValue;
-                pacienteAgregado.FechaNac = DateTime.Parse(fecha);
-                pacienteAgregado.ObraSocial = oS.Find(busqueda => busqueda.Descripcion.ToUpper() == idObraSocial.SelectedValue.ToUpper());
 
-                    if (pacienteNegocio.agregarPaciente(pacienteAgregado))
-                    {
-                        SuccessPaciente.Visible = true;
-                    }
-                    else FailPaciente.Visible = true;
-                
+                pacienteModificado.Nombre = nombrePaciente.Text;
+                pacienteModificado.Apellido = apellidoPaciente.Text;
+                pacienteModificado.Mail = emailPaciente.Text;
+                string fecha = anioNac.SelectedValue+"/"+mesNac.SelectedValue+"/"+diaNac.SelectedValue;
+                pacienteModificado.FechaNac = DateTime.Parse(fecha);
+                pacienteModificado.ObraSocial = oS.Find(busqueda => busqueda.Descripcion.ToUpper() == idObraSocial.SelectedValue.ToUpper());
+
+
+                if (pacienteNegocio.modificarPaciente(pacienteModificado))
+                {
+                    SuccessPaciente.Visible = true;
+                }
+                else FailPaciente.Visible = true;
+               
+
             }
             catch (Exception)
             {
@@ -73,18 +86,20 @@ namespace TPC_Larroca_Vasquez
 
         }
 
-
+  
         protected void mesNac_SelectedIndexChanged(object sender, EventArgs e)
         {
             int mes = int.Parse(mesNac.SelectedItem.Value);
             List<int> dias = new List<int>();
-            if (mes == 02) {
+            if (mes == 02)
+            {
                 for (int x = 1; x < 29; x++)
                 {
                     dias.Add(x);
                 }
             }
-            else { 
+            else
+            {
                 if (mes == 01 || mes == 03 || mes == 05 || mes == 07 || mes == 08 || mes == 10 || mes == 12)
                 {
                     for (int x = 1; x < 32; x++)

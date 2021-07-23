@@ -18,6 +18,7 @@
       <th scope="col" class="centrar-texto">Fecha Nacimiento</th>
       <th scope="col" class="centrar-texto">Contacto</th>
       <th scope="col" class="centrar-texto">Detalles</th>
+      <th scope="col" class="centrar-texto">Eliminar</th>
     </tr>
   </thead>
            <tbody>
@@ -27,12 +28,17 @@
                    <th scope="row"><i class="fas fa-user "></i></th>
                    <td class="centrar-texto"><%=paciente.Nombre %></td>
                    <td class="centrar-texto"><%=paciente.Apellido %></td>
-                   <td class="centrar-texto"><%=paciente.FechaNac %></td>
+                   <td class="centrar-texto"><%=paciente.FechaNac.Date.ToString("d") %></td>
                    <td class="centrar-texto"><%=paciente.Mail %></td>
                    <td class="centrar-texto">
                        <a href="DetallePacientes?id=<%=paciente.Id %>" style="align-items: center;">
                            <i class="fas fa-search-plus" style="color: black;"></i>
                        </a>
+                   </td>
+                   <td class="centrar-texto">
+                        <a href="ListaDePacientes?id=<%=paciente.Mail%>" style="align-items: center;">
+                            <i class="fas fa-user-slash" style="color: black;"></i>
+                        </a>
                    </td>
                </tr>
                <%} %>

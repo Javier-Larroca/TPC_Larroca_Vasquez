@@ -104,10 +104,10 @@ GO
 
 -- Procedimiento para el alta de medico desde aplicación, asignando día y estado automaticamente sin parametro.
 CREATE PROCEDURE pAltaDeMedico(
-@mNombre VARCHAR (40),
-@mApellido VARCHAR (40),
-@mMail VARCHAR(50),
-@mMatricula INT
+	@mNombre VARCHAR (40),
+	@mApellido VARCHAR (40),
+	@mMail VARCHAR(50),
+	@mMatricula INT
 )
 AS 
 BEGIN
