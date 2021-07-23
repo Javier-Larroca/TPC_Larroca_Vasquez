@@ -128,6 +128,7 @@
     <Content Include="img\LAVE.png" />
     <Content Include="Interfaces\Interfaz.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Login.aspx" />
     <Content Include="Medicos\AltaDeMedico.aspx" />
     <Content Include="Medicos\AsignacionTurnoDeTrabajos.aspx" />
     <Content Include="Medicos\BajaDeMedico.aspx" />
@@ -167,7 +168,11 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Turnos\DetalleTurno.aspx" />
+    <Content Include="Turnos\ListaDeTurnos.aspx" />
+    <Content Include="Turnos\Observaciones.aspx" />
     <Content Include="Turnos\ReservarTurno.aspx" />
+    <Content Include="Turnos\TurnosAsignados.aspx" />
     <Content Include="Usuarios\ListaDeUsuarios.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -207,6 +212,13 @@
     </Compile>
     <Compile Include="Interfaces\Interfaz.Master.designer.cs">
       <DependentUpon>Interfaz.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Medicos\AltaDeMedico.aspx.cs">
       <DependentUpon>AltaDeMedico.aspx</DependentUpon>
@@ -286,12 +298,40 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Turnos\DetalleTurno.aspx.cs">
+      <DependentUpon>DetalleTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos\DetalleTurno.aspx.designer.cs">
+      <DependentUpon>DetalleTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos\ListaDeTurnos.aspx.cs">
+      <DependentUpon>ListaDeTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos\ListaDeTurnos.aspx.designer.cs">
+      <DependentUpon>ListaDeTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos\Observaciones.aspx.cs">
+      <DependentUpon>Observaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos\Observaciones.aspx.designer.cs">
+      <DependentUpon>Observaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Turnos\ReservarTurno.aspx.cs">
       <DependentUpon>ReservarTurno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Turnos\ReservarTurno.aspx.designer.cs">
       <DependentUpon>ReservarTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Turnos\TurnosAsignados.aspx.cs">
+      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Turnos\TurnosAsignados.aspx.designer.cs">
+      <DependentUpon>TurnosAsignados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\ListaDeUsuarios.aspx.cs">
       <DependentUpon>ListaDeUsuarios.aspx</DependentUpon>

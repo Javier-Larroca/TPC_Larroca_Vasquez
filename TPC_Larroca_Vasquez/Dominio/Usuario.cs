@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
+    public enum TipoUsuario
+    {
+        SOPORTE = 1,
+        RECEPCIONISTA = 2,
+        MEDICO = 3,
+        PACIENTE = 4
+    }
     public class Usuario
     {
         public int Id { get; set; }
@@ -18,7 +25,7 @@ namespace Dominio
         public string Contraseña{ get; set; }
         public DateTime Alta{ get; set; }
         public DateTime? Modificacion { get; set; }
-
+        public string TipoUsuario{ get; set; }
         //Le agrego '?' al DatTime para indicar que puede ser nulleable por definicion de BBDD
         public DateTime? Baja{ get; set; }
 

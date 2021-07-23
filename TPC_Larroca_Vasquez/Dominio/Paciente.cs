@@ -23,6 +23,11 @@ namespace Dominio
         {
 
         }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Apellido;
+        }
     }
 
 }

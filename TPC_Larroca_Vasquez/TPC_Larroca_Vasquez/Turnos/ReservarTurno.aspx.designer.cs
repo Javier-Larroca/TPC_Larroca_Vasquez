@@ -24,6 +24,15 @@ namespace TPC_Larroca_Vasquez.Turnos
         protected global::System.Web.UI.ScriptManager ScripManager1;
 
         /// <summary>
+        /// PacienteSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PacienteSeleccionado;
+
+        /// <summary>
         /// nombrePaciente control.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,31 @@ namespace TPC_Larroca_Vasquez.Turnos
         protected global::System.Web.UI.WebControls.TextBox nombrePaciente;
 
         /// <summary>
-        /// Calendario control.
+        /// Buscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendario;
+        protected global::System.Web.UI.WebControls.Button Buscar;
+
+        /// <summary>
+        /// Pacientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList Pacientes;
+
+        /// <summary>
+        /// seleccionarPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button seleccionarPaciente;
 
         /// <summary>
         /// Especialidades control.
@@ -49,6 +76,15 @@ namespace TPC_Larroca_Vasquez.Turnos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Especialidades;
+
+        /// <summary>
+        /// Calendario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar Calendario;
 
         /// <summary>
         /// HorariosDisponibles control.

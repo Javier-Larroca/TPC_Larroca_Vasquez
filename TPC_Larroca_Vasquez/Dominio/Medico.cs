@@ -16,6 +16,8 @@ namespace Dominio
         public Medico()
         {
             Id = 0;
+            TurnosDeTrabajo = new List<TurnoDeTrabajo>();
+            Especialidades = new List<Especialidad>();
         }
 
         //Implemento constructor de Clase Padre "Usuario"

@@ -161,6 +161,14 @@ footer p{
     margin-bottom: 18px;
 }
 
+.section-reserva-turno{
+    margin-top: 18px;
+    display: flow-root;
+    width: 82%;
+    margin-bottom: 18px;
+    padding-left: 26%;
+}
+
 .filtro-busqueda{
     margin-top: 20px;
     display: flow-root;
@@ -199,4 +207,8 @@ footer p{
 
 .btns-flotantes input{
     margin-right: 10px;
+}
+
+.dropdown-top{
+    margin-top: 10px;
 }

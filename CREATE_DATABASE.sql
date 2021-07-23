@@ -14,6 +14,7 @@ GO
 CREATE TABLE ADM_USUARIOS(
 IDUSUARIO INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 TIPO_USUARIO INT NOT NULL FOREIGN KEY REFERENCES TIPO_USUARIOS(ID),
+EMAIL VARCHAR(50) NOT NULL,
 FECHA_ALTA DATE NOT NULL,
 FECHA_MODIFICACION DATE NULL,
 FECHA_BAJA DATE NULL,
@@ -67,7 +68,7 @@ GO
 
 CREATE TABLE TURNOS_DE_TRABAJO(
 IDMEDICO INT NOT NULL FOREIGN KEY REFERENCES MEDICOS(ID),
-DIA VARCHAR (10) NOT NULL CHECK(DIA = 'LUNES' OR DIA = 'MARTES' OR DIA = 'MIERCOLES' OR DIA = 'JUEVES' OR DIA = 'VIERNES' OR DIA = 'SABADO' OR DIA = 'DOMINGO'),
+DIA VARCHAR (10) NOT NULL CHECK(DIA = 'LUNES' OR DIA = 'MARTES' OR DIA = 'MIÉRCOLES' OR DIA = 'JUEVES' OR DIA = 'VIERNES' OR DIA = 'SÁBADO' OR DIA = 'DOMINGO'),
 HORARIO_INGRESO VARCHAR(5) NULL,
 HORARIO_SALIDA VARCHAR(5) NULL, 
 DIA_LIBRE BIT NOT NULL,
@@ -75,6 +76,34 @@ PRIMARY KEY (IDMEDICO, DIA)
 )
 GO
 
+CREATE TABLE TURNOS(
+ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+IDPACIENTE INT NOT NULL FOREIGN KEY REFERENCES PACIENTES(ID),
+IDMEDICO INT NOT NULL FOREIGN KEY REFERENCES MEDICOS(ID),
+FECHA_TURNO DATE NOT NULL,
+HORARIO VARCHAR(5) NOT NULL,
+OBSERVACIONES VARCHAR(200) NULL,
+ESTADO BIT NOT NULL
+)
+GO
+
+CREATE TABLE RECEPCIONISTAS(
+ID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES ADM_USUARIOS(IDUSUARIO),
+NOMBRE VARCHAR(50) NOT NULL,
+APELLIDO VARCHAR(50) NOT NULL,
+CONTRASEÑA VARCHAR(50) NOT NULL,
+CONTACTO VARCHAR(50) NOT NULL UNIQUE
+)
+GO
+
+CREATE TABLE SOPORTES(
+ID INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES ADM_USUARIOS(IDUSUARIO),
+NOMBRE VARCHAR(50) NOT NULL,
+APELLIDO VARCHAR(50) NOT NULL,
+CONTRASEÑA VARCHAR(50) NOT NULL,
+CONTACTO VARCHAR(50) NOT NULL UNIQUE
+)
+GO
 --Procedimiento para listar especialidades por medico
 CREATE PROCEDURE pEspecialidadesPorMedico(@idMedico INT)
 AS
@@ -102,6 +131,17 @@ INNER JOIN MEDICOS med ON med.ID = admUsua.IDUSUARIO
 WHERE admUsua.ESTADO = 1;
 GO
 
+--Lista de turnos con pacientes y medicos 
+CREATE VIEW turnosCompletos
+AS
+SELECT tur.*, pa.NOMBRE + ' ' + pa.APELLIDO AS PACIENTE, med.NOMBRE + ' ' + med.APELLIDO AS MEDICO
+FROM 
+TURNOS tur
+INNER JOIN PACIENTES pa ON pa.ID = tur.IDPACIENTE
+INNER JOIN MEDICOS med ON med.ID = tur.IDMEDICO
+GO
+
+
 -- Procedimiento para el alta de medico desde aplicación, asignando día y estado automaticamente sin parametro.
 CREATE PROCEDURE pAltaDeMedico(
 @mNombre VARCHAR (40),
@@ -123,7 +163,7 @@ IF @tipoUsuario IS NULL BEGIN
 	RAISERROR('No existe ningún ID para el tipo de usuario que quiere dar de alta', 16, 1)
 	END
 
-INSERT INTO ADM_USUARIOS (TIPO_USUARIO, FECHA_ALTA, ESTADO) VALUES (@tipoUsuario, GETDATE(), 1)
+INSERT INTO ADM_USUARIOS (TIPO_USUARIO, EMAIL, FECHA_ALTA, ESTADO) VALUES (@tipoUsuario, @mMail, GETDATE(), 1)
 DECLARE @idMedico INT
 SET @idMedico = @@IDENTITY
 
@@ -186,8 +226,8 @@ BEGIN
 END
 
 --Borramos lista de especialidades asignadas, para ingresar las nuevas en otro procedimiento
-DELETE FROM ESPECIALIDADES_POR_MEDICO WHERE IDMEDICO = @mId
-IF(SELECT COUNT(*) FROM ESPECIALIDADES_POR_MEDICO WHERE IDMEDICO = @mId) != 0
+DELETE FROM ESPECIALIDADES_POR_MEDICOS WHERE IDMEDICO = @mId
+IF(SELECT COUNT(*) FROM ESPECIALIDADES_POR_MEDICOS WHERE IDMEDICO = @mId) != 0
 BEGIN
     RAISERROR('No se pudo borrar lista de especialidades', 16,1)
 END
@@ -243,6 +283,129 @@ END CATCH
 END
 GO
 
+
+CREATE PROCEDURE pr_MedicosDisponibles(@dia VARCHAR(11), @idEspecialidad int)
+AS
+BEGIN
+SELECT med.ID, med.NOMBRE, med.APELLIDO, tur.DIA, tur.HORARIO_INGRESO, tur.HORARIO_SALIDA
+FROM
+TURNOS_DE_TRABAJO tur 
+INNER JOIN MEDICOS med ON med.ID = tur.IDMEDICO
+INNER JOIN ESPECIALIDADES_POR_MEDICOS esp ON esp.IDMEDICO = med.ID
+WHERE DIA = @dia
+AND esp.IDESPECIALIDAD = @idEspecialidad
+AND tur.DIA_LIBRE = 0
+END
+GO
+
+CREATE PROCEDURE pAltaDeTurno(@idPaciente INT, @idMedico INT, @fecha DATE, @horario VARCHAR(5))
+AS
+BEGIN
+
+BEGIN TRY
+BEGIN TRANSACTION
+
+INSERT INTO TURNOS (IDPACIENTE, IDMEDICO, FECHA_TURNO, HORARIO, ESTADO) VALUES (@idPaciente, @idMedico, @fecha, @horario, 1)
+COMMIT TRANSACTION
+END TRY
+
+BEGIN CATCH
+ROLLBACK TRANSACTION
+END CATCH
+
+END
+GO
+
+CREATE PROCEDURE pAltaRecepcionista(
+@mNombre VARCHAR (40),
+@mApellido VARCHAR (40),
+@mMail VARCHAR(50),
+@contraseña VARCHAR(50)
+)
+AS 
+BEGIN
+--Manejo de errores
+BEGIN TRY 
+--Comenzamos la transaccion
+BEGIN TRANSACTION
+--Antes de insertar en Medicos, vamos directo a ADM_USUARIOS para lograr generar un IDUSUARIO
+DECLARE @tipoUsuario INT
+SET @tipoUsuario = (SELECT ID FROM TIPO_USUARIOS WHERE UPPER(DESCRIPCION) = 'RECEPCIONISTA')
+
+IF @tipoUsuario IS NULL BEGIN
+	RAISERROR('No existe ningún ID para el tipo de usuario que quiere dar de alta', 16, 1)
+	END
+
+INSERT INTO ADM_USUARIOS (TIPO_USUARIO, EMAIL, FECHA_ALTA, ESTADO) VALUES (@tipoUsuario, @mMail, GETDATE(), 1)
+DECLARE @idRecepcionista INT
+SET @idRecepcionista = @@IDENTITY
+
+--Si no se pudo insertar registro en ADM_USUARIOS, cancelamos el alta
+IF(SELECT COUNT(*) FROM ADM_USUARIOS WHERE IDUSUARIO = @idRecepcionista) != 1 BEGIN
+	RAISERROR('Ocurrio un error al insertar usuario en ADM_USUARIO', 16,1)
+	END
+--Si se dio el alta en ADM_USUARIOS, procedemos a dar el alta en MEDICOS
+INSERT INTO RECEPCIONISTAS (ID, NOMBRE, APELLIDO, CONTACTO, CONTRASEÑA) VALUES (@idRecepcionista, @mNombre, @mApellido, @mMail, @contraseña)
+
+--Ejecutamos COMMIT de la transaccion
+COMMIT TRANSACTION
+END TRY
+
+--Empieza Catch, cualquier error generado anterior, se imprimirá y se hará rollback de la transaccion
+BEGIN CATCH
+PRINT ERROR_MESSAGE()
+ROLLBACK TRANSACTION
+END CATCH
+--Finaliza maneja de errores
+END
+GO
+
+
+CREATE PROCEDURE pAltaSoporte(
+@mNombre VARCHAR (40),
+@mApellido VARCHAR (40),
+@mMail VARCHAR(50),
+@contraseña VARCHAR(50)
+)
+AS 
+BEGIN
+--Manejo de errores
+BEGIN TRY 
+--Comenzamos la transaccion
+BEGIN TRANSACTION
+--Antes de insertar en Medicos, vamos directo a ADM_USUARIOS para lograr generar un IDUSUARIO
+DECLARE @tipoUsuario INT
+SET @tipoUsuario = (SELECT ID FROM TIPO_USUARIOS WHERE UPPER(DESCRIPCION) = 'SOPORTE')
+
+IF @tipoUsuario IS NULL BEGIN
+	RAISERROR('No existe ningún ID para el tipo de usuario que quiere dar de alta', 16, 1)
+	END
+
+INSERT INTO ADM_USUARIOS (TIPO_USUARIO, EMAIL, FECHA_ALTA, ESTADO) VALUES (@tipoUsuario, @mMail, GETDATE(), 1)
+DECLARE @idSoporte INT
+SET @idSoporte = @@IDENTITY
+
+--Si no se pudo insertar registro en ADM_USUARIOS, cancelamos el alta
+IF(SELECT COUNT(*) FROM ADM_USUARIOS WHERE IDUSUARIO = @idSoporte) != 1 BEGIN
+	RAISERROR('Ocurrio un error al insertar usuario en ADM_USUARIO', 16,1)
+	END
+--Si se dio el alta en ADM_USUARIOS, procedemos a dar el alta en MEDICOS
+INSERT INTO SOPORTES (ID, NOMBRE, APELLIDO, CONTACTO, CONTRASEÑA) VALUES (@idSoporte, @mNombre, @mApellido, @mMail, @contraseña)
+
+--Ejecutamos COMMIT de la transaccion
+COMMIT TRANSACTION
+END TRY
+
+--Empieza Catch, cualquier error generado anterior, se imprimirá y se hará rollback de la transaccion
+BEGIN CATCH
+PRINT ERROR_MESSAGE()
+ROLLBACK TRANSACTION
+END CATCH
+--Finaliza maneja de errores
+END
+GO
+
+
 -- Valores a insertar para prueba
 INSERT INTO ESPECIALIDADES (DESCRIPCION) VALUES ('Odontologia'), ('Cardiologia'), ('Urologia'), ('Administración y Gestión en enfermería'), ('Alergia e Inmunología'), ('Cirugía de Torax'), ('Cirugia general'), ('Cirugia Pediatrica'), ('Cirugia plastica y reparadora'), ('Cirugia vascular periférica'), ('Clinica Medica'), ('Dermatologia'), ('Diabetología'), ('Endocrinologia'), ('Gastroenterología'), ('Infectología'), ('Neumonología'), ('Neurología'), ('Nutriología'), ('Oftalmología'), ('Oncología'), ('Traumotología'), ('Otorrinolaringología'), ('Patología'), ('Pediatría'), ('Psiquiatría')
 GO
@@ -257,6 +420,14 @@ EXECUTE pAltaDeMedico 'Agustin','Larroca', 'agustin.larroca@gmail.com', 789123
 GO
 
 EXECUTE pAltaDeMedico 'Roberto', 'Gonzales','robertogonzales@gmail.com', 142365
+GO
+
+
+EXECUTE pAltaRecepcionista 'Mariana', 'Juan', 'Mariana@gmail.com', '123'
+GO
+
+
+EXECUTE pAltaSoporte 'Elmer', 'Vasquez', 'elmer@gmail.com', 'CuartoDeLibra'
 GO
 
 INSERT INTO ESPECIALIDADES_POR_MEDICOS VALUES (1,1), (2,1), (3,1)

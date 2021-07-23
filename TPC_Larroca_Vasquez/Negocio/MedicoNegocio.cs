@@ -150,5 +150,43 @@ namespace Negocio
             }
            
         }
+
+        public List<Medico> medicosDisponibles(string dia, int especialidad)
+        {
+            try
+            {
+                List<Medico> medicosDisponibles = new List<Medico>();
+                conexion.setearProcedimientoAlmacenado("pr_MedicosDisponibles");
+                conexion.agregarParametro("@dia", dia);
+                conexion.agregarParametro("@idEspecialidad", especialidad);
+                conexion.ejecutarProcedimientoAlmacenado(true);
+                conexion.limpiarParametros();
+
+                while (conexion.Lector.Read())
+                {
+                    Medico backup = new Medico();
+                    //Cargamos objeto utilizando Medico backup
+                    backup.Id = (int)conexion.Lector["ID"];
+                    backup.Nombre = (String)conexion.Lector["NOMBRE"];
+                    backup.Apellido = (String)conexion.Lector["APELLIDO"];
+
+                    TurnoDeTrabajo turno = new TurnoDeTrabajo((String)conexion.Lector["DIA"]);
+                    turno.HorarioEntrada = (String)conexion.Lector["HORARIO_INGRESO"];
+                    turno.HorarioSalida = (String)conexion.Lector["HORARIO_SALIDA"];
+                    backup.TurnosDeTrabajo.Add(turno);
+                    medicosDisponibles.Add(backup);
+
+                }
+                return medicosDisponibles;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

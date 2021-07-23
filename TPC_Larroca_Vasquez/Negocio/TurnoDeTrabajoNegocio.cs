@@ -16,10 +16,10 @@ namespace Negocio
             List<TurnoDeTrabajo> turnosConDias = new List<TurnoDeTrabajo> {
                 new TurnoDeTrabajo("Lunes"),
                 new TurnoDeTrabajo("Martes"),
-                new TurnoDeTrabajo("Miercoles"),
+                new TurnoDeTrabajo("Miércoles"),
                 new TurnoDeTrabajo("Jueves"),
                 new TurnoDeTrabajo("Viernes"),
-                new TurnoDeTrabajo("Sabado"),
+                new TurnoDeTrabajo("Sábado"),
                 new TurnoDeTrabajo("Domingo")
             };
             return turnosConDias;

@@ -9,9 +9,14 @@ namespace Dominio
     public class Turno
     {
         public int NumeroDeTurno{ get; set; }
-        public int Estado { get; set; }
+        public bool Estado { get; set; }
+        public int IdPaciente { get; set; }
+        public string NombrePaciente { get; set; }
+        public int IdMedico { get; set; }
+        public string NombreMedico { get; set; }
+        public string Horario{ get; set; }
         public DateTime FechaTurno{ get; set; }
-        public String Observaciones{ get; set; }
+        public string Observaciones{ get; set; }
 
     }
 }

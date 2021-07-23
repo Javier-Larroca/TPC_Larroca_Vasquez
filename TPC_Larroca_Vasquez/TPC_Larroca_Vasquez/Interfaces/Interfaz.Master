@@ -42,10 +42,13 @@
                         </ul>
                     </div>
                 </li>
+                <%if (usuarioLogueado.TipoUsuario.ToUpper() != "MEDICO")
+                    {%>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#medicos-collapse" aria-expanded="false" onclick="return false">
                         Medicos
                     </button>
+
                     <div class="collapse" id="medicos-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li>
@@ -63,31 +66,34 @@
                         </ul>
                     </div>
                 </li>
+                <%} %>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#turnos-collapse" aria-expanded="false" onclick="return false">
                         Turnos
                     </button>
                     <div class="collapse" id="turnos-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <%if (usuarioLogueado.TipoUsuario.ToUpper() != "MEDICO")
+                                {%>
                             <li>
-                                <a class="dropdown-item" href="#">Turnos asignados
+                                <a class="dropdown-item" href="../Turnos/ListaDeTurnos">Lista de turnos
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="../Turnos/ReservarTurno">Reservar turno
                                 </a>
                             </li>
+                            <%} %>
+                            <%if (usuarioLogueado.TipoUsuario.ToUpper() == "MEDICO"){ %>
                             <li>
-                                <a class="dropdown-item" href="#">Cancelar turno
+                                <a class="dropdown-item" href="../Turnos/TurnosAsignados"> Turnos asignados
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Modificar turno
-                                </a>
-                            </li>
+                            <%} %>
                         </ul>
                     </div>
                 </li>
+                <%if (usuarioLogueado.TipoUsuario.ToUpper() != "MEDICO") {%>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#paciente-collapse" aria-expanded="false" onclick="return false">
                         Pacientes
@@ -109,27 +115,24 @@
                         </ul>
                     </div>
                 </li>
-                <li class="mb-1">
+                <%} %>
+                <%--<li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#usuario-collapse" aria-expanded="false" onclick="return false">
                         Usuarios
                     </button>
                     <div class="collapse" id="usuario-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li>
-                                <a class="dropdown-item" href="#">Listado de usuarios
+                                <a class="dropdown-item" href="../Usuarios/ListaDeUsuarios">Listado de usuarios
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Alta de usuario
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Baja de usuario
-                                </a>
-                            </li>
                         </ul>
                     </div>
-                </li>
+                </li>--%>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cuenta-collapse" aria-expanded="false" onclick="return false">
                         Cuenta
@@ -137,11 +140,7 @@
                     <div class="collapse" id="cuenta-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li>
-                                <a class="dropdown-item" href="#">Perfil
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Cerrar sesión
+                                <a class="dropdown-item" href="../Login">Cerrar sesión
                                 </a>
                             </li>
                         </ul>
