@@ -144,10 +144,10 @@ GO
 
 -- Procedimiento para el alta de medico desde aplicación, asignando día y estado automaticamente sin parametro.
 CREATE PROCEDURE pAltaDeMedico(
-@mNombre VARCHAR (40),
-@mApellido VARCHAR (40),
-@mMail VARCHAR(50),
-@mMatricula INT
+	@mNombre VARCHAR (40),
+	@mApellido VARCHAR (40),
+	@mMail VARCHAR(50),
+	@mMatricula INT
 )
 AS 
 BEGIN
@@ -433,7 +433,7 @@ GO
 INSERT INTO ESPECIALIDADES_POR_MEDICOS VALUES (1,1), (2,1), (3,1)
 GO
 
-INSERT INTO OBRAS_SOCIALES (DESCRIPCION) VALUES ('Galeno'), ('OSDE'), ('Swiss Medical')
+INSERT INTO OBRAS_SOCIALES (DESCRIPCION) VALUES ('Galeno'), ('OSDE'), ('Swiss Medical'), ('Austral Salud'), ('Sancor Salud')
 GO
 
 SET DATEFORMAT DMY;

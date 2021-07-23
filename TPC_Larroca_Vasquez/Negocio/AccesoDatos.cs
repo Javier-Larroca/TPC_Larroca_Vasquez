@@ -19,6 +19,8 @@ namespace Negocio
             comando = new SqlCommand();
         }
 
+
+
         //Seteamos commandType y text para ejecutar consultas o vistas
         public void setearConsulta(string query)
         {

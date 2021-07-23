@@ -19,6 +19,8 @@ namespace TPC_Larroca_Vasquez
                 int Id = int.Parse(Request.QueryString["Id"]);
                 List<Paciente> listado = (List<Paciente>)Session["ListaDePacientes"];
                 pacienteSeleccionado = listado.Find(x => x.Id == Id);
+                Session.Add("PacienteSeleccionado", pacienteSeleccionado);
+                pacienteSeleccionado = listado.Find(x => x.Id == Id);
             }
             catch
             {

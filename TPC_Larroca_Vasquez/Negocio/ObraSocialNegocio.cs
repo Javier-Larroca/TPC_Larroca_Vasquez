@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                conexion.setearConsulta("SELECT ID, DESCRIPCION FROM OBRAS_SOCIALES");
+                conexion.setearConsulta("Select ID, DESCRIPCION from OBRAS_SOCIALES order by DESCRIPCION");
                 conexion.ejecutarConsultaLectura();
 
                 while (conexion.Lector.Read())

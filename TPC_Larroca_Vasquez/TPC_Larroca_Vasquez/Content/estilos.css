@@ -209,6 +209,17 @@ footer p{
     margin-right: 10px;
 }
 
+<<<<<<< HEAD
 .dropdown-top{
     margin-top: 10px;
+=======
+.styling {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    /* height: 150px;
+  overflow: auto; */
+>>>>>>> 1e1b9048814419c0fdc76ebfc34da493320140b8
 }

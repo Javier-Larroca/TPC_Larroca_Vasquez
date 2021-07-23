@@ -16,10 +16,11 @@
                 <%=pacienteSeleccionado.Nombre %> <%=pacienteSeleccionado.Apellido %>
             </div>
             <div class="card-body">                
-                <p class="card-text"><strong>Fecha de Nacimiento:</strong> <%=pacienteSeleccionado.FechaNac %></p>
+                <p class="card-text"><strong>Fecha de Nacimiento:</strong> <%=pacienteSeleccionado.FechaNac.Date.ToString("d") %></p>
                 <p class="card-text"><strong>Contacto:</strong> <%=pacienteSeleccionado.Mail %></p>
                 <p class="card-text"><strong>Obra Social:</strong> <%=pacienteSeleccionado.ObraSocial.Descripcion %></p>
-                <a href="#" class="btn btn-primary">Modificar datos</a>
+
+                <a href="ModificarPaciente?id=<%=pacienteSeleccionado.Id %>"" class="btn btn-primary">Modificar datos</a>
             </div>
             <div class="card-footer text-muted">
                 Dado de Alta: <%=pacienteSeleccionado.Alta.Date.ToString("d") %>

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPC_Larroca_Vasquez
+namespace TPC_Larroca_Vasquez.Pacientes
 {
 
 
-    public partial class AltaPaciente
+    public partial class ModificarPaciente
     {
 
         /// <summary>
@@ -87,13 +87,13 @@ namespace TPC_Larroca_Vasquez
         protected global::System.Web.UI.WebControls.DropDownList diaNac;
 
         /// <summary>
-        /// crearPaciente control.
+        /// modificarPaciente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button crearPaciente;
+        protected global::System.Web.UI.WebControls.Button modificarPaciente;
 
         /// <summary>
         /// Warning control.

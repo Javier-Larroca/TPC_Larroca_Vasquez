@@ -23,6 +23,11 @@ namespace TPC_Larroca_Vasquez
                     listaDePacientes = negocio.listarPaciente();
                     Session.Add("ListaDePacientes", listaDePacientes);
                 }
+                if (Request.QueryString["Email"] != null)
+                {
+                    string emailPacienteAEliminar = Request.QueryString["Email"];
+                    negocio.eliminarPaciente(emailPacienteAEliminar);
+                }
             }
             catch
             {
