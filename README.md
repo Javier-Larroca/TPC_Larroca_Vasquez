@@ -26,7 +26,14 @@ La aplicación debe manejar seguridad y perfiles de acceso. Por un lado administ
 ver y manipular todo, por otro lado recepcionista, que puede administrar pacientes y médicos y
 dar de alta turnos, y finalmente médicos que sólo podrán ver sus turnos asociados y modificarlos para agregar las observaciones sobre el diagnóstico del paciente.
 
-Para la primera etapa del TPC se solicita:
-- la arquitectura de clases (modelo de dominio),
-- armado de pantallas de la aplicación (SIN funcionalidad, sólo ventanas, algunos controles y navegación) y
-- lectura desde base de datos de al menos UNA entidad.
+Imagenes de proyecto:
+
+<img src="Imagenes-Final/1.PNG" alt="Captura 1"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 2"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 3"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 4"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 5"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 6"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 7"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 8"/>
+<img src="Imagenes-Final/1.PNG" alt="Captura 9"/>
