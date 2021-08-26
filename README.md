@@ -28,12 +28,12 @@ dar de alta turnos, y finalmente médicos que sólo podrán ver sus turnos asoci
 
 Imagenes de proyecto:
 
-<img src="Imagenes-Final/1.PNG" alt="Captura 1"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 2"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 3"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 4"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 5"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 6"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 7"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 8"/>
-<img src="Imagenes-Final/1.PNG" alt="Captura 9"/>
+<img src="Imagenes-Final/1.png" alt="Captura 1"/>
+<img src="Imagenes-Final/2.png" alt="Captura 2"/>
+<img src="Imagenes-Final/3.png" alt="Captura 3"/>
+<img src="Imagenes-Final/4.png" alt="Captura 4"/>
+<img src="Imagenes-Final/5.png" alt="Captura 5"/>
+<img src="Imagenes-Final/6.png" alt="Captura 6"/>
+<img src="Imagenes-Final/7.png" alt="Captura 7"/>
+<img src="Imagenes-Final/8.png" alt="Captura 8"/>
+<img src="Imagenes-Final/9.png" alt="Captura 9"/>
